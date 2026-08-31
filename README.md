@@ -81,6 +81,7 @@ IndicPass/
 │   ├── architecture.md          # how the pieces fit together
 │   ├── dataset_pipeline.md      # the four data scripts + corpus ambiguity
 │   ├── training.md              # tokenizer, model, trainer, metrics
+│   ├── gpu_training_setup.md    # setting up + training on a CUDA laptop
 │   └── development_workflow.md  # day-to-day + the two-PC setup
 ├── models/
 │   ├── checkpoints/         # training-time snapshots (training PC)
@@ -355,6 +356,7 @@ python scripts/validate_dataset.py
 
 Full detail: [docs/dataset_pipeline.md](docs/dataset_pipeline.md).
 Training: [docs/training.md](docs/training.md).
+Setting this up on a CUDA laptop: [docs/gpu_training_setup.md](docs/gpu_training_setup.md).
 
 ### Reproducing the dataset rather than copying it
 
