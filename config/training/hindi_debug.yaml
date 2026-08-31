@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- Hindi DEBUG configuration (Stage 1).
+#
+# This is not a small experiment. It is a correctness test: 500 training pairs,
+# a deliberately undersized model, and no dropout, run until the model has
+# memorised them.
+#
+# The point is that a working seq2seq MUST be able to overfit 500 examples to
+# near-zero CER. If it cannot, something is broken -- the target shift, the
+# attention mask, the padding, the loss -- and no amount of data or epochs will
+# fix it. Run this before any real training:
+#
+#   python scripts/train.py --config config/training/hindi_debug.yaml
+#
+# Expected: train loss collapsing toward zero and CER on the training data
+# below ~0.05 within 30 epochs. Takes a couple of minutes on CPU; no GPU
+# needed.
+# ---------------------------------------------------------------------------
+
+name: hindi_debug
+language: hin
+dataset_source: aksharantar
+seed: 42
+device: auto
+
+# --- data ------------------------------------------------------------------
+# Subsets are taken by limit, not by writing separate files to disk. The
+# processed splits are deterministic, so "the first 500" is a stable set.
+max_train_records: 500
+max_validation_records: 500
+batch_size: 32
+eval_batch_size: 64
+num_workers: 0
+
+# --- model -----------------------------------------------------------------
+# Small enough to be fast, large enough that memorising 500 pairs is easy.
+embedding_dim: 128
+hidden_dim: 256
+encoder_layers: 1
+decoder_layers: 1
+# Zero on purpose: dropout is regularisation, and this run is *trying* to
+# overfit. Leaving it on would muddy the signal the test exists to produce.
+dropout: 0.0
+
+# --- optimisation ----------------------------------------------------------
+epochs: 30
+learning_rate: 0.002
+weight_decay: 0.0
+gradient_clip: 1.0
+teacher_forcing_ratio: 1.0
+lr_scheduler: none
+
+# --- evaluation ------------------------------------------------------------
+max_decode_length: 64
+log_interval: 10
+
+# --- output ----------------------------------------------------------------
+output_dir: runs
+
+# Evaluate on the TRAINING subset. Unusual, and correct here: the question is
+# "can this model memorise what it was shown", which validation data cannot
+# answer.
+evaluate_on_train_subset: true

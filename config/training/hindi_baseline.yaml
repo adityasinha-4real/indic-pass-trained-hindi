@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- Hindi BASELINE configuration (Stage 4: full training).
+#
+#   python scripts/train.py --config config/training/hindi_baseline.yaml
+#
+# Trains on all 1,299,143 Hindi pairs. Do not start here -- work up through the
+# stages, each of which is this file with --max-train-records applied:
+#
+#   Stage 1     500  hindi_debug.yaml         overfit test, minutes, CPU ok
+#   Stage 2  10,000  --max-train-records 10000    pipeline shakeout
+#   Stage 3 100,000  --max-train-records 100000   is the architecture learning?
+#   Stage 4     all  this file                 the baseline
+#
+# The numbers below are conservative on purpose. This is a baseline whose job
+# is to be correct and reproducible, not to be the best model this data can
+# support; tune only once it has trained end to end.
+# ---------------------------------------------------------------------------
+
+name: hindi_baseline_v1
+language: hin
+dataset_source: aksharantar
+seed: 42
+device: auto
+# See indicpass.seeding: strict determinism costs LSTM throughput and still
+# does not transfer between GPUs. Same machine + same seed is reproducible
+# without it.
+deterministic: false
+
+# --- data ------------------------------------------------------------------
+# null = the whole split. Override from the CLI for stages 2 and 3 rather than
+# copying this file; the processed splits are deterministic, so a limit picks a
+# stable subset.
+max_train_records: null
+max_validation_records: null
+
+# Sized for a 4 GB laptop GPU. See the GPU table in README.md before raising
+# it; a batch that does not fit fails at the end of an epoch, not the start.
+batch_size: 128
+eval_batch_size: 256
+# 0 on Windows. Worker processes re-import and re-pickle the dataset there,
+# which for in-memory string pairs costs more than it saves.
+num_workers: 0
+# Keep every character. The rare ones are exactly the ones worth getting right.
+min_char_frequency: 1
+
+# --- model -----------------------------------------------------------------
+embedding_dim: 256
+hidden_dim: 512
+encoder_layers: 2
+decoder_layers: 2
+dropout: 0.2
+
+# --- optimisation ----------------------------------------------------------
+epochs: 15
+learning_rate: 0.001
+weight_decay: 0.0
+gradient_clip: 1.0
+# Fully teacher-forced. Dropping toward ~0.9 later narrows the train/inference
+# gap but slows convergence; establish the baseline first.
+teacher_forcing_ratio: 1.0
+lr_scheduler: plateau
+lr_patience: 1
+lr_factor: 0.5
+
+# --- evaluation ------------------------------------------------------------
+max_decode_length: 64
+# The validation split is 6,307 records, decoded greedily one character at a
+# time. null evaluates all of it; set a batch cap if epochs feel eval-bound.
+eval_max_batches: null
+early_stopping_patience: 3
+
+# --- output ----------------------------------------------------------------
+output_dir: runs
+log_interval: 200
