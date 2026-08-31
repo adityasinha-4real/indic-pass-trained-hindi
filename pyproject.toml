@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "indicpass"
+version = "0.1.0"
+description = "Multilingual Indian transliteration and code-mixed text processing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["transliteration", "code-mixed", "indic", "nlp", "hinglish"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Natural Language :: Hindi",
+    "Natural Language :: Tamil",
+    "Natural Language :: Telugu",
+]
+# Runtime requirements live in requirements/base.txt so that the pip-install
+# workflow and the packaging metadata can never drift apart.
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements/base.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "PTH", "RUF"]
+ignore = [
+    "B008",  # function call in argument default -- fine for argparse helpers
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts import _bootstrap for its sys.path side effect before other imports.
+"scripts/*.py" = ["E402"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src", "scripts"]
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+check_untyped_defs = true
+# Third-party data libraries ship incomplete stubs; don't fail on them.
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# scripts/ is importable so the CLIs' helper functions can be tested directly.
+pythonpath = ["src", "scripts"]
+addopts = "-q"

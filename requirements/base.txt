@@ -1,0 +1,29 @@
+# IndicPass -- base runtime dependencies (dataset pipeline + inference glue).
+#
+# This file is the single source of truth for the package's install
+# requirements; pyproject.toml reads it via [tool.setuptools.dynamic].
+#
+#   python -m pip install -r requirements/base.txt
+#
+# Deliberately excluded: torch and everything else needed to train. Those live
+# in requirements/ml.txt, which is installed only where training happens.
+#
+# Every entry below is imported by code in src/ or scripts/. If you add one,
+# import it; if you stop importing one, delete it.
+
+# --- configuration -----------------------------------------------------
+PyYAML>=6.0.2
+# Reads .env so HF_TOKEN works as .env.example documents (indicpass.cli).
+python-dotenv>=1.0.1
+
+# --- Hugging Face Hub access -------------------------------------------
+# Listing, sizing and selectively downloading repository files (indicpass.hub).
+huggingface-hub>=0.27.0
+
+# --- columnar peeking ---------------------------------------------------
+# inspect_dataset.py reads parquet shards without extracting them.
+pyarrow>=18.1.0
+
+# --- console output, logging, progress ---------------------------------
+tqdm>=4.67.1
+rich>=13.9.4

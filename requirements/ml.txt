@@ -1,0 +1,46 @@
+# IndicPass -- training dependencies.
+#
+# Install this wherever training happens (the training PC, Colab, or a dev
+# machine running the debug config on CPU). The dataset pipeline does not need
+# it: download, inspect, preprocess and validate all run on base.txt alone.
+#
+#   python -m pip install -r requirements/ml.txt
+#
+# The Hindi baseline is a character-level seq2seq written directly in PyTorch.
+# It uses no modelling framework on top -- no transformers, no accelerate, no
+# lightning -- because a 2-layer BiLSTM encoder with attention is about 200
+# lines and a framework would only hide it.
+
+-r base.txt
+
+# --- training -----------------------------------------------------------
+torch>=2.5.1
+# Tensor bookkeeping in metrics and batching. Comes with torch anyway; pinned
+# here so it is a declared dependency rather than an accident.
+numpy>=1.26
+
+# --- monitoring ----------------------------------------------------------
+tensorboard>=2.18.0
+
+# ---------------------------------------------------------------------------
+# GPU INSTALL
+# ---------------------------------------------------------------------------
+# `pip install torch` from PyPI gives a CUDA build on Windows/Linux x86-64 and
+# a CPU build elsewhere. That default is correct for most people, so try it
+# first and check the result:
+#
+#   python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+#
+# True  -> a CUDA GPU is being used.
+# False -> CPU only. Fine for the debug config, far too slow for full training.
+#
+# If it prints False on a machine that does have an NVIDIA GPU, the wheel does
+# not match the driver. Install torch explicitly from PyTorch's own index
+# BEFORE this file, picking the CUDA version `nvidia-smi` reports:
+#
+#   python -m pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   python -m pip install -r requirements/ml.txt
+#
+# See https://pytorch.org/get-started/locally/ for the current index URLs.
+# Do not pin a CUDA-specific URL in this file: it would break CPU and Mac
+# installs, and go stale the moment the driver is updated.

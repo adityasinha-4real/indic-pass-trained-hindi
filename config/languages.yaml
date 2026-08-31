@@ -1,0 +1,134 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- target language registry.
+#
+# The CANONICAL key for a language everywhere in this project is its ISO 639-3
+# code (hin, tam, ...). That is also what Aksharantar uses, so no translation
+# layer is needed for the first dataset. ISO 639-1 codes and plain-English
+# names are accepted on the CLI as aliases and normalised to the 639-3 key.
+#
+# `unicode_ranges` are inclusive hex codepoint ranges for the language's
+# script, used by the validation and preprocessing steps to check that a
+# "native" string really is written in the script it claims. Ranges cover the
+# primary Unicode block plus that script's extension blocks.
+# ---------------------------------------------------------------------------
+
+# Languages processed when a script is run without --languages.
+default_targets: [hin, tam, tel, kan, mal]
+
+# Codepoints that are script-neutral and legal inside any Indic string.
+# Excluded from the "is this the right script?" ratio so that a correct word
+# is not penalised for containing a joiner or a digit.
+neutral_codepoints:
+  - "200C"        # ZERO WIDTH NON-JOINER  -- required for correct conjuncts
+  - "200D"        # ZERO WIDTH JOINER
+  - "0020"        # SPACE
+  - "0964"        # DEVANAGARI DANDA (used across Indic scripts)
+  - "0965"        # DEVANAGARI DOUBLE DANDA
+neutral_categories:
+  - Nd            # decimal digits (ASCII and Indic)
+  - Po            # punctuation
+  - Pd
+  - Zs
+
+languages:
+  hin:
+    name: Hindi
+    native_name: "हिन्दी"
+    iso_639_1: hi
+    iso_639_3: hin
+    romanized_label: Hinglish
+    script: Devanagari
+    script_code: Deva
+    unicode_ranges:
+      - "0900-097F"     # Devanagari
+      - "A8E0-A8FF"     # Devanagari Extended
+      - "1CD0-1CFF"     # Vedic Extensions
+    # Identifier used by each upstream dataset, keyed by source name.
+    dataset_codes:
+      aksharantar: hin
+
+  tam:
+    name: Tamil
+    native_name: "தமிழ்"
+    iso_639_1: ta
+    iso_639_3: tam
+    romanized_label: Tanglish
+    script: Tamil
+    script_code: Taml
+    unicode_ranges:
+      - "0B80-0BFF"       # Tamil
+      - "11FC0-11FFF"     # Tamil Supplement
+    dataset_codes:
+      aksharantar: tam
+
+  tel:
+    name: Telugu
+    native_name: "తెలుగు"
+    iso_639_1: te
+    iso_639_3: tel
+    romanized_label: Tenglish
+    script: Telugu
+    script_code: Telu
+    unicode_ranges:
+      - "0C00-0C7F"     # Telugu
+    dataset_codes:
+      aksharantar: tel
+
+  kan:
+    name: Kannada
+    native_name: "ಕನ್ನಡ"
+    iso_639_1: kn
+    iso_639_3: kan
+    romanized_label: Kanglish
+    script: Kannada
+    script_code: Knda
+    unicode_ranges:
+      - "0C80-0CFF"     # Kannada
+    dataset_codes:
+      aksharantar: kan
+
+  mal:
+    name: Malayalam
+    native_name: "മലയാളം"
+    iso_639_1: ml
+    iso_639_3: mal
+    romanized_label: Manglish
+    script: Malayalam
+    script_code: Mlym
+    unicode_ranges:
+      - "0D00-0D7F"     # Malayalam
+    dataset_codes:
+      aksharantar: mal
+
+# Extra CLI spellings accepted for a language, beyond its ISO codes and its
+# `name`/`romanized_label` (matching is case-insensitive).
+aliases:
+  hin: [hindi, hinglish, devanagari]
+  tam: [tamil, tanglish]
+  tel: [telugu, tenglish, teluglish]
+  kan: [kannada, kanglish]
+  mal: [malayalam, manglish]
+
+# Not targeted yet, but present in Aksharantar. Verified against the real
+# repository listing on 2026-08-30 (revision e418c1fc), so these codes and
+# archive sizes are facts, not guesses. To activate one, move it into
+# `languages` with full metadata and add it to `default_targets`.
+#
+#   code   language      archive    note
+future_candidates:
+  ben: "Bengali        31.6 MiB"
+  mar: "Marathi        39.9 MiB   Devanagari -- shares hin's script"
+  nep: "Nepali         66.9 MiB   Devanagari"
+  san: "Sanskrit       55.9 MiB   Devanagari"
+  guj: "Gujarati       29.7 MiB"
+  urd: "Urdu           17.0 MiB   right-to-left; needs extra handling"
+  kok: "Konkani        16.6 MiB   Devanagari"
+  pan: "Punjabi        12.1 MiB"
+  ori: "Odia            9.1 MiB"
+  mai: "Maithili        6.7 MiB   Devanagari"
+  asm: "Assamese        4.7 MiB"
+  sid: "Sindhi          1.4 MiB   upstream uses 'sid', not the usual 'snd'"
+  kas: "Kashmiri        1.1 MiB"
+  brx: "Bodo          931.3 KiB   Devanagari"
+  mni: "Manipuri      312.5 KiB"
+  doi: "Dogri          58.3 KiB   smallest; likely too small to train on alone"

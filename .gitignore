@@ -1,0 +1,168 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- .gitignore
+#
+# Guiding rule: code and configuration are versioned; datasets, model weights
+# and secrets are not. The repository must stay small enough to clone quickly
+# on both the development PC and the training PC.
+# ---------------------------------------------------------------------------
+
+# --- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual environments ---------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Testing / typing / linting caches --------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# --- Secrets ----------------------------------------------------------------
+# .env.example IS committed; every real secret file is not.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.yaml
+credentials.json
+.hf_token
+.huggingface/
+
+# --- Datasets ---------------------------------------------------------------
+# Keep the directory skeleton (via .gitkeep) but never the data itself.
+data/raw/**
+data/processed/**
+data/synthetic/**
+
+# Git will not descend into an excluded directory, so a `!.../file` negation
+# below can never reach a file nested inside one. These rules re-admit the
+# DIRECTORIES (trailing slash) so the negations that follow can be applied;
+# the contents stay excluded by the rules above.
+!data/raw/*/
+!data/processed/*/
+!data/processed/*/*/
+
+!data/**/.gitkeep
+!data/**/README.md
+# Manifests are small provenance records -- a few hundred bytes that pin the
+# upstream revision and every preprocessing setting. They are what lets the
+# other machine reproduce the corpus instead of copying it. Keep them.
+!data/**/*manifest*.json
+
+# Dataset file formats, wherever they land
+*.arrow
+*.parquet
+*.jsonl
+*.tsv
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+*.7z
+
+# ...but small hand-written test fixtures are code, not data.
+!tests/fixtures/**
+
+# Hugging Face datasets cache, if it ever lands inside the repo
+.cache/
+hf_cache/
+
+# --- Model weights / checkpoints --------------------------------------------
+models/checkpoints/**
+models/final/**
+!models/**/.gitkeep
+!models/**/README.md
+
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+*.onnx
+*.h5
+*.tflite
+*.gguf
+*.npz
+*.model          # SentencePiece model files
+
+# --- Training run artefacts --------------------------------------------------
+# Everything scripts/train.py writes: checkpoints, tokenizer, resolved config,
+# metrics.json and TensorBoard event files, all under runs/<name>/.
+runs/
+tensorboard/
+wandb/
+lightning_logs/
+results/logs/
+results/**/*.log
+outputs/
+tmp/
+# NB: no bare `checkpoints/` or `logs/` rule. Those directory names also occur
+# under models/ and results/, and an excluded directory is one git will not
+# descend into -- which silently defeats the `!.../.gitkeep` negations below.
+# runs/ already covers everything training writes.
+
+# --- Notebooks ---------------------------------------------------------------
+.ipynb_checkpoints/
+notebooks/**/*-checkpoint.ipynb
+notebooks/scratch/
+
+# --- IDE / editors -----------------------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.spyderproject
+.ropeproject
+
+# --- OS ----------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

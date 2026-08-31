@@ -1,0 +1,32 @@
+# IndicPass -- line endings and diff behaviour.
+#
+# The repository is developed on Windows and trained on Linux, so line endings
+# are normalised to LF in the repository and checked out natively. Without
+# this, the first clone on the other machine shows every file as modified.
+
+* text=auto eol=lf
+
+# Windows-only scripts must keep CRLF or cmd.exe mis-parses them.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+# Shell scripts must keep LF even when checked out on Windows.
+*.sh text eol=lf
+
+# Data and model formats are binary; never touch their bytes, never try to
+# diff them. Most are git-ignored, but a stray one must not be corrupted.
+*.zip   binary
+*.gz    binary
+*.pt    binary
+*.pth   binary
+*.ckpt  binary
+*.safetensors binary
+*.arrow binary
+*.parquet binary
+*.model binary
+*.npz   binary
+
+# JSONL is text, but a 270 MB diff helps nobody.
+*.jsonl -diff
+
+# Notebooks: keep them out of diffs; they are mostly serialised output.
+*.ipynb -diff

@@ -1,0 +1,56 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- project-level configuration.
+#
+# Every path below is RELATIVE TO THE PROJECT ROOT and is resolved at runtime
+# by indicpass.config. Never write an absolute path here: the same repository
+# is checked out on the development PC and on the training PC, and absolute
+# paths would break one of them.
+# ---------------------------------------------------------------------------
+
+project:
+  name: IndicPass
+  version: 0.1.0
+  description: >-
+    Multilingual Indian transliteration and code-mixed text processing.
+    Accepts Romanized / code-mixed Indic text and renders it in the
+    appropriate native Indic script.
+  # Global seed for every stochastic step (splitting, sampling, shuffling).
+  # Changing this changes the train/validation/test partition.
+  seed: 42
+
+paths:
+  config: config
+  data: data
+  data_raw: data/raw
+  data_raw_aksharantar: data/raw/aksharantar
+  data_raw_other: data/raw/other
+  data_processed: data/processed
+  data_synthetic: data/synthetic
+  models: models
+  model_checkpoints: models/checkpoints
+  model_final: models/final
+  notebooks: notebooks
+  results: results
+  reports: results/reports
+  logs: results/logs
+  scripts: scripts
+  src: src
+
+logging:
+  level: INFO
+  # Plain-format fallback used when `rich` is unavailable.
+  format: "%(asctime)s | %(levelname)-8s | %(name)-28s | %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  # Set to null to disable file logging entirely.
+  file: results/logs/indicpass.log
+  # Rotate the log file once it exceeds this size.
+  max_bytes: 5242880   # 5 MiB
+  backup_count: 3
+
+# Behaviour shared by every CLI in scripts/.
+runtime:
+  # Scripts that would touch the network or write large outputs must be
+  # confirmed interactively unless --yes is passed. Set false only in CI.
+  confirm_destructive: true
+  # Progress bars; disable for non-TTY log capture.
+  progress_bars: true
