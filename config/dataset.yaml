@@ -1,0 +1,154 @@
+# ---------------------------------------------------------------------------
+# IndicPass -- dataset sources, preprocessing and split configuration.
+#
+# All paths are relative to the project root.
+#
+# `match_patterns` drive selective downloading: for each requested language,
+# every pattern has {code} substituted with that language's dataset code and
+# the result is fnmatch'ed against the repository's real file listing. This
+# keeps the code layout-agnostic -- run
+#     python scripts/inspect_dataset.py --remote --list-files
+# to see the actual listing and tighten the patterns if needed.
+# ---------------------------------------------------------------------------
+
+default_source: aksharantar
+
+sources:
+  aksharantar:
+    enabled: true
+    type: huggingface
+    repo_id: ai4bharat/Aksharantar
+    repo_type: dataset
+    url: https://huggingface.co/datasets/ai4bharat/Aksharantar
+    citation: "Madhani et al., Aksharantar (AI4Bharat), 2022"
+    license: cc-by-4.0
+    # Word-level transliteration pairs, NOT sentence-level. Aksharantar gives
+    # IndicPass its Roman -> native lexicon; sentence and code-mix handling
+    # needs additional sources (see `other`).
+    task: word_transliteration
+    direction: roman_to_native
+    raw_dir: data/raw/aksharantar
+    # VERIFIED 2026-08-30 against revision e418c1fc via
+    #   python scripts/inspect_dataset.py --remote --list-files
+    # The repo is 23 files at the root: .gitattributes, README.md and one zip
+    # per language named by its ISO 639-3 code (hin.zip, tam.zip, ...), 695.4
+    # MiB in total. Per-language download is therefore exact -- one archive per
+    # language, nothing shared between them.
+    selective_download: true
+    match_patterns:
+      - "{code}.zip"
+      # Kept as fallbacks in case the layout changes upstream.
+      - "{code}/*"
+      - "*/{code}.zip"
+    # Archives are extracted next to themselves under raw_dir/extracted/.
+    extract_archives: true
+    # Upstream field names -> IndicPass standard fields. Multiple candidates
+    # are tried in order, so a layout change upstream does not break the run.
+    field_map:
+      source_text: ["english word", "english_word", "source", "src", "roman"]
+      target_text: ["native word", "native_word", "target", "tgt", "native"]
+      # Optional provenance carried through when present.
+      subsource: ["source", "origin"]
+      score: ["score", "confidence"]
+    # Filenames that identify a split, matched case-insensitively as substrings.
+    split_markers:
+      train: ["train"]
+      validation: ["valid", "val", "dev"]
+      test: ["test"]
+
+  other:
+    # Placeholder for later sources (code-mixed corpora, sentence-level data,
+    # user-contributed pairs). Nothing is wired up yet.
+    enabled: false
+    type: local
+    raw_dir: data/raw/other
+
+# --- splits ----------------------------------------------------------------
+splits:
+  names: [train, validation, test]
+  # Prefer the dataset's own splits when the raw files declare them; only fall
+  # back to `ratios` for sources that ship a single undifferentiated file.
+  use_native_splits: true
+  ratios:
+    train: 0.98
+    validation: 0.01
+    test: 0.01
+  # Splits are assigned by hashing the record's stable id, not by shuffling.
+  # The partition therefore depends only on the record's content -- it is
+  # identical on the development PC and the training PC, and stable when new
+  # records are appended.
+  strategy: hash
+  seed: 42
+  # Hash-based splitting is applied within each language so every language
+  # keeps the configured proportions.
+  group_by: language
+
+# --- preprocessing ---------------------------------------------------------
+preprocessing:
+  output_dir: data/processed
+  output_format: jsonl
+  encoding: utf-8
+
+  # Text normalisation. NFC is the correct choice for Indic scripts: it keeps
+  # canonical composition so that visually identical strings compare equal.
+  unicode_normalization: NFC
+  strip_whitespace: true
+  collapse_internal_whitespace: true
+  lowercase_source: true
+  # Leave native text case alone -- Indic scripts are unicameral.
+  lowercase_target: false
+
+  # Records failing any of these are dropped and counted in the run summary.
+  drop_empty: true
+  drop_duplicates: true
+  # A record's identity for deduplication.
+  dedup_key: [language, source_text, target_text]
+
+  min_source_length: 1
+  max_source_length: 64
+  min_target_length: 1
+  max_target_length: 64
+
+  # Source side must be Romanized (ASCII letters); target side must actually
+  # be written in the language's declared script.
+  require_ascii_source: true
+  min_source_ascii_ratio: 0.9
+  require_native_script_target: true
+  min_target_script_ratio: 0.9
+
+  # Cap records per language, e.g. for a fast smoke run. null = no cap.
+  # Applied deterministically (first N after sorting by stable id).
+  max_records_per_language: null
+
+# --- validation ------------------------------------------------------------
+validation:
+  report_dir: results/reports
+  report_prefix: validation_report
+  # Sample records shown per language in the human-readable report.
+  sample_size: 5
+  # Exceeding a threshold makes validate_dataset.py exit non-zero.
+  # A threshold set to null (or removed) is measured and reported, not gated.
+  thresholds:
+    max_null_ratio: 0.0
+    max_empty_ratio: 0.0
+    max_duplicate_ratio: 0.001
+    min_target_script_ratio: 0.95
+    min_source_ascii_ratio: 0.95
+    min_records_per_language: 1000
+
+    # --- split overlap ---------------------------------------------------
+    # Measured per split PAIR, as a fraction of unique source spellings,
+    # because the pairs do not mean the same thing.
+    #
+    # A source spelling in both train and an evaluation split is
+    # contamination: the model is scored on something it trained on. Never
+    # acceptable, so both are hard-gated at zero.
+    max_train_validation_leakage_ratio: 0.0
+    max_train_test_leakage_ratio: 0.0
+    #
+    # A source spelling in both validation and test involves no training data
+    # at all -- it only means the two evaluation sets are slightly correlated.
+    # Measured and reported, but null means it does not fail a run. Set a
+    # number here to gate it. (Aksharantar Hindi measures ~0.000128, entirely
+    # validation/test; its train split is clean against both.)
+    max_validation_test_overlap_ratio: null

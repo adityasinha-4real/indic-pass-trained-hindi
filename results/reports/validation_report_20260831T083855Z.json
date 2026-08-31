@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-08-31T08:38:55+00:00",
+  "project": "IndicPass v0.1.0",
+  "source": "aksharantar",
+  "input_dir": "data/processed",
+  "files_inspected": 3,
+  "thresholds": {
+    "max_null_ratio": 0.0,
+    "max_empty_ratio": 0.0,
+    "max_duplicate_ratio": 0.001,
+    "min_target_script_ratio": 0.95,
+    "min_source_ascii_ratio": 0.95,
+    "min_records_per_language": 1000,
+    "max_train_validation_leakage_ratio": 0.0,
+    "max_train_test_leakage_ratio": 0.0,
+    "max_validation_test_overlap_ratio": null
+  },
+  "total_records": 1315562,
+  "languages": [
+    {
+      "language": "hin",
+      "name": "Hindi",
+      "script": "Deva",
+      "records": 1315562,
+      "per_split": {
+        "test": 10112,
+        "train": 1299143,
+        "validation": 6307
+      },
+      "per_subsource": {
+        "IndicCorp": 958605,
+        "Samanantar": 154090,
+        "Existing": 131771,
+        "Dakshina": 31293,
+        "Wikidata": 24983,
+        "AK-Freq": 12806,
+        "AK-NEI": 1188,
+        "AK-NEF": 826
+      },
+      "unique_sources": 1080299,
+      "issues": {},
+      "ratios": {
+        "duplicate": 0.0,
+        "null": 0.0,
+        "empty": 0.0,
+        "target_script_ok": 1.0,
+        "source_ascii_ok": 1.0
+      },
+      "split_overlap": {
+        "train_validation": {
+          "count": 0,
+          "ratio": 0.0,
+          "gated": true
+        },
+        "train_test": {
+          "count": 0,
+          "ratio": 0.0,
+          "gated": true
+        },
+        "validation_test": {
+          "count": 138,
+          "ratio": 0.000128,
+          "gated": false
+        }
+      },
+      "sources_in_multiple_splits": 138,
+      "ambiguous_sources": 143972,
+      "mean_script_ratio": 1.0,
+      "mean_ascii_ratio": 1.0,
+      "source_length": {
+        "min": 1,
+        "max": 32,
+        "mean": 8.67
+      },
+      "target_length": {
+        "min": 1,
+        "max": 28,
+        "mean": 7.78
+      },
+      "samples": [
+        {
+          "source_text": "maitrologist",
+          "target_text": "मैट्रोलॉजिस्ट",
+          "split": "test"
+        },
+        {
+          "source_text": "phwcs",
+          "target_text": "पीएचडब्ल्यूसीएस",
+          "split": "test"
+        },
+        {
+          "source_text": "pratidwandiyon",
+          "target_text": "प्रतिद्वन्दियों",
+          "split": "test"
+        },
+        {
+          "source_text": "pratiyukti",
+          "target_text": "प्रतियुक्ति",
+          "split": "test"
+        },
+        {
+          "source_text": "eksisatens",
+          "target_text": "एक्सिसटेंस",
+          "split": "test"
+        }
+      ],
+      "problems": [],
+      "failures": [],
+      "files": [
+        "data/processed/aksharantar/hin/test.jsonl",
+        "data/processed/aksharantar/hin/train.jsonl",
+        "data/processed/aksharantar/hin/validation.jsonl"
+      ]
+    }
+  ],
+  "passed": true
+}

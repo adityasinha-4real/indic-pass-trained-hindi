@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-08-31T08:34:01+00:00",
+  "source": "aksharantar",
+  "repo_id": "ai4bharat/Aksharantar",
+  "repo_type": "dataset",
+  "revision": "e418c1fc928d9f5393af33268472cf20c1891be8",
+  "languages": [
+    "hin"
+  ],
+  "match_patterns": [
+    "{code}.zip",
+    "{code}/*",
+    "*/{code}.zip"
+  ],
+  "total_bytes": 33100386,
+  "files": [
+    {
+      "path": "hin.zip",
+      "bytes": 33100386
+    }
+  ],
+  "extracted_to": [
+    "data/raw/aksharantar/extracted/hin"
+  ]
+}

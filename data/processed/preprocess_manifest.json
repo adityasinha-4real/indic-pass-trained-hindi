@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-08-31T08:24:13+00:00",
+  "source": "aksharantar",
+  "input_dir": "data/raw/aksharantar",
+  "output_dir": "data/processed",
+  "languages": {
+    "hin": {
+      "read": 1315624,
+      "written": 1315562,
+      "dropped_total": 62,
+      "dropped_by_reason": {
+        "duplicate": 61,
+        "target_wrong_script": 1
+      },
+      "dropped_pct_by_reason": {
+        "duplicate": 0.0046,
+        "target_wrong_script": 0.0001
+      },
+      "per_split": {
+        "test": 10112,
+        "train": 1299143,
+        "validation": 6307
+      },
+      "per_subsource": {
+        "IndicCorp": 958605,
+        "Samanantar": 154090,
+        "Existing": 131771,
+        "Dakshina": 31293,
+        "Wikidata": 24983,
+        "AK-Freq": 12806,
+        "AK-NEI": 1188,
+        "AK-NEF": 826
+      },
+      "dropped_per_subsource": {
+        "Wikidata": 29,
+        "Samanantar": 20,
+        "IndicCorp": 9,
+        "Existing": 2,
+        "Dakshina": 2
+      },
+      "source_files": [
+        "data/raw/aksharantar/extracted/hin/hin_test.json",
+        "data/raw/aksharantar/extracted/hin/hin_train.json",
+        "data/raw/aksharantar/extracted/hin/hin_valid.json"
+      ]
+    }
+  },
+  "preprocessing": {
+    "output_dir": "data/processed",
+    "output_format": "jsonl",
+    "encoding": "utf-8",
+    "unicode_normalization": "NFC",
+    "strip_whitespace": true,
+    "collapse_internal_whitespace": true,
+    "lowercase_source": true,
+    "lowercase_target": false,
+    "drop_empty": true,
+    "drop_duplicates": true,
+    "dedup_key": [
+      "language",
+      "source_text",
+      "target_text"
+    ],
+    "min_source_length": 1,
+    "max_source_length": 64,
+    "min_target_length": 1,
+    "max_target_length": 64,
+    "require_ascii_source": true,
+    "min_source_ascii_ratio": 0.9,
+    "require_native_script_target": true,
+    "min_target_script_ratio": 0.9,
+    "max_records_per_language": null
+  },
+  "splits": {
+    "names": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "use_native_splits": true,
+    "ratios": {
+      "train": 0.98,
+      "validation": 0.01,
+      "test": 0.01
+    },
+    "strategy": "hash",
+    "seed": 42,
+    "group_by": "language"
+  },
+  "total_written": 1315562
+}
