@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+from contextlib import suppress
 from typing import Sequence
 
 from indicpass.config import Config, ConfigError, load_config
@@ -96,8 +97,28 @@ def confirm(question: str, *, assume_yes: bool = False) -> bool:
     return answer in {"y", "yes"}
 
 
+def force_utf8_output() -> None:
+    """Make stdout and stderr carry Indic text regardless of the platform.
+
+    Every script here can print Devanagari. On Windows, Python writes to a
+    console using UTF-8 but falls back to the locale encoding -- cp1252 on a
+    default install -- the moment stdout is a pipe or a file. So the tool works
+    when a human watches it and dies with UnicodeEncodeError under
+    ``> out.txt``, ``| more``, or CI. Reconfiguring here fixes every script at
+    once, because they all enter through run_cli.
+
+    Guarded: a caller may have replaced these streams with something that has
+    no reconfigure (pytest's capture objects, for one), and failing to set an
+    encoding is never worth aborting the run over.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        with suppress(AttributeError, ValueError, OSError):
+            stream.reconfigure(encoding="utf-8")
+
+
 def run_cli(main, argv: Sequence[str] | None = None) -> int:
     """Invoke *main* with uniform handling of config errors and Ctrl-C."""
+    force_utf8_output()
     try:
         return int(main(argv) or 0)
     except ConfigError as exc:
