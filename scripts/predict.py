@@ -137,8 +137,26 @@ def main(argv: Sequence[str] | None = None) -> int:
     from indicpass.seeding import resolve_device
     from indicpass.trainer import build_model_from_checkpoint, load_checkpoint
 
-    payload = load_checkpoint(config.resolve(args.checkpoint))
-    model, tokenizer = build_model_from_checkpoint(payload)
+    checkpoint_path = config.resolve(args.checkpoint)
+    if checkpoint_path.is_dir():
+        from indicpass.model import ModelConfig, Seq2SeqTransliterator
+        from indicpass.tokenizer import CharVocab, TransliterationTokenizer
+        import safetensors.torch
+
+        config_data = json.loads((checkpoint_path / "config.json").read_text(encoding="utf-8"))
+        model = Seq2SeqTransliterator(ModelConfig.from_dict(config_data))
+        state_dict = safetensors.torch.load_file(checkpoint_path / "model.safetensors")
+        model.load_state_dict(state_dict)
+
+        tok_data = json.loads((checkpoint_path / "tokenizer.json").read_text(encoding="utf-8"))
+        tokenizer = TransliterationTokenizer(
+            CharVocab(tok_data["source_vocab"]),
+            CharVocab(tok_data["target_vocab"]),
+            metadata=tok_data.get("metadata") or {},
+        )
+    else:
+        payload = load_checkpoint(checkpoint_path)
+        model, tokenizer = build_model_from_checkpoint(payload)
 
     device = resolve_device(args.device)
     model = model.to(device).eval()
