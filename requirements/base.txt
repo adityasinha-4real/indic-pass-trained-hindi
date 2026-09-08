@@ -27,3 +27,18 @@ pyarrow>=18.1.0
 # --- console output, logging, progress ---------------------------------
 tqdm>=4.67.1
 rich>=13.9.4
+
+# --- password strength engine -------------------------------------------
+# The generic estimator IndicPass is benchmarked against. Without it no
+# comparative claim can be made at all, which is why it is a hard requirement
+# rather than an extra (indicpass.password.baseline).
+zxcvbn>=4.5.0
+# The external word-frequency table. Aksharantar ships no frequency data, so
+# this is where a word's position in an attacker's wordlist comes from
+# (indicpass.password.frequency). Used at dictionary-BUILD time only -- the
+# values are baked into data/dictionaries/, so scoring never needs it.
+#
+# Note the size: the wheel is ~57 MB of frozen frequency tables. wordfreq 3.x
+# is deliberately no longer updated by its author, which is what makes it a
+# reproducible citation rather than a moving target.
+wordfreq>=3.1.1

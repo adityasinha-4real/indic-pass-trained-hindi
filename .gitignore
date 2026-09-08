@@ -83,6 +83,15 @@ data/synthetic/**
 # other machine reproduce the corpus instead of copying it. Keep them.
 !data/**/*manifest*.json
 
+# --- IndicDict --------------------------------------------------------------
+# The dictionary itself is a build artefact: tens of megabytes, regenerated
+# deterministically by scripts/build_indicdict.py from the processed corpus and
+# the committed model bundle. Its .meta.json sidecar is the provenance record --
+# tier sizes, model identifier, git commit, filters -- and every guess estimate
+# depends on those tier sizes, so that one is kept.
+!data/dictionaries/
+!data/dictionaries/*.meta.json
+
 # Dataset file formats, wherever they land
 *.arrow
 *.parquet
@@ -131,6 +140,10 @@ wandb/
 lightning_logs/
 results/logs/
 results/**/*.log
+# scripts/verify_reproducibility.py runs every pipeline twice into here and
+# removes the tree when it finishes. An interrupted run leaves two full copies
+# of every report behind; they are scratch, never a result.
+results/reports/.verify/
 outputs/
 tmp/
 # NB: no bare `checkpoints/` or `logs/` rule. Those directory names also occur
@@ -148,6 +161,10 @@ notebooks/scratch/
 !.vscode/settings.json
 !.vscode/extensions.json
 !.vscode/launch.json
+# Agent tooling. settings.json accumulates command allowlists that contain
+# absolute paths from whichever machine approved them, which is machine-local
+# state and not project configuration.
+.claude/
 .idea/
 *.iml
 *.swp

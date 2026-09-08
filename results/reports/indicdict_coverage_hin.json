@@ -1,0 +1,1712 @@
+{
+  "generated_at": "2026-09-08T04:35:22+00:00",
+  "project": "IndicPass v0.1.0",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "dictionary": {
+    "language": "hin",
+    "file": "data/dictionaries/indicdict_hin.jsonl",
+    "entries": 297747,
+    "ranked_entries": 40966,
+    "frequency_coverage": 0.137587,
+    "frequency_source": {
+      "identifier": "wordfreq-3.1.1/hi/small",
+      "provider": "wordfreq",
+      "version": "3.1.1",
+      "language": "hi",
+      "wordlist": "small",
+      "semantics": "Zipf frequency: log10(occurrences per billion tokens) of the NATIVE-SCRIPT word in a general text corpus. A corpus word frequency -- not a password frequency and not a model score.",
+      "entries": 26653,
+      "license": "Apache-2.0 (package); aggregated corpora under their own terms",
+      "corpora": [
+        "Wikipedia",
+        "OSCAR web text",
+        "Twitter",
+        "Reddit"
+      ],
+      "notes": "wordfreq 3.x is a frozen dataset: its author stopped updating it in 2024, which makes it reproducible but means it reflects pre-2022 text. Only a 'small' list ships for Hindi (~27k words)."
+    },
+    "built_at": "2026-09-07T10:51:55+00:00",
+    "built_from_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+    "tiers": [
+      {
+        "name": "human_romanized",
+        "index": 0,
+        "size": 30400,
+        "ranked_size": 13437,
+        "unranked_size": 16963,
+        "offset": 40966
+      },
+      {
+        "name": "curated_entities",
+        "index": 1,
+        "size": 25005,
+        "ranked_size": 1747,
+        "unranked_size": 23258,
+        "offset": 57929
+      },
+      {
+        "name": "curated_other",
+        "index": 2,
+        "size": 122342,
+        "ranked_size": 23612,
+        "unranked_size": 98730,
+        "offset": 81187
+      },
+      {
+        "name": "mined",
+        "index": 3,
+        "size": 120000,
+        "ranked_size": 2170,
+        "unranked_size": 117830,
+        "offset": 179917
+      }
+    ]
+  },
+  "probe_set": {
+    "source": "indicpass.password.benchmark.INDIC_WORDS",
+    "generator_version": "1.0",
+    "words": 163,
+    "note": "Written from usage, not sampled from IndicDict. No word is ever added to the dictionary because it appears here."
+  },
+  "core_probe": {
+    "words": [
+      "namaste",
+      "namaskar",
+      "dhanyavaad",
+      "dhanyavad",
+      "bharat",
+      "krishna",
+      "sharma",
+      "aditya",
+      "mera",
+      "pyaar",
+      "prem",
+      "maa",
+      "papa",
+      "dost",
+      "ghar"
+    ],
+    "probed": 15,
+    "present": 8,
+    "absent": 7,
+    "coverage": 0.5333,
+    "priced_by_observed_rank": 8,
+    "priced_by_tier_fallback": 0,
+    "rank_coverage_of_present": 1.0,
+    "rows": [
+      {
+        "word": "namaste",
+        "present": false
+      },
+      {
+        "word": "namaskar",
+        "present": false
+      },
+      {
+        "word": "dhanyavaad",
+        "present": false
+      },
+      {
+        "word": "dhanyavad",
+        "present": true,
+        "native_form": "धन्यवाद",
+        "tier": "curated_other",
+        "source": "AK-Freq",
+        "model_verified": false,
+        "frequency": 5.19,
+        "rank": 861,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 861.0
+      },
+      {
+        "word": "bharat",
+        "present": true,
+        "native_form": "भारत",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": true,
+        "frequency": 6.38,
+        "rank": 41,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 41.0
+      },
+      {
+        "word": "krishna",
+        "present": true,
+        "native_form": "कृष्णा",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.55,
+        "rank": 3026,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 3026.0
+      },
+      {
+        "word": "sharma",
+        "present": false
+      },
+      {
+        "word": "aditya",
+        "present": true,
+        "native_form": "आदित्य",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 4.24,
+        "rank": 5598,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 5598.0
+      },
+      {
+        "word": "mera",
+        "present": true,
+        "native_form": "मेरा",
+        "tier": "mined",
+        "source": "Samanantar",
+        "model_verified": true,
+        "frequency": 5.78,
+        "rank": 213,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 213.0
+      },
+      {
+        "word": "pyaar",
+        "present": true,
+        "native_form": "प्यार",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.68,
+        "rank": 299,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 299.0
+      },
+      {
+        "word": "prem",
+        "present": true,
+        "native_form": "प्रेम",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.4,
+        "rank": 535,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 535.0
+      },
+      {
+        "word": "maa",
+        "present": false
+      },
+      {
+        "word": "papa",
+        "present": true,
+        "native_form": "पीएपीए",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": false,
+        "frequency": 4.79,
+        "rank": 1946,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1946.0
+      },
+      {
+        "word": "dost",
+        "present": false
+      },
+      {
+        "word": "ghar",
+        "present": false
+      }
+    ]
+  },
+  "control_probe": {
+    "words": [
+      "password",
+      "welcome",
+      "football",
+      "qwerty",
+      "letmein",
+      "monkey",
+      "dragon",
+      "master",
+      "shadow",
+      "superman"
+    ],
+    "probed": 10,
+    "present": 7,
+    "absent": 3,
+    "coverage": 0.7,
+    "priced_by_observed_rank": 3,
+    "priced_by_tier_fallback": 4,
+    "rank_coverage_of_present": 0.4286,
+    "rows": [
+      {
+        "word": "password",
+        "present": true,
+        "native_form": "पासवर्ड",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 3.99,
+        "rank": 9055,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 9055.0
+      },
+      {
+        "word": "welcome",
+        "present": false
+      },
+      {
+        "word": "football",
+        "present": true,
+        "native_form": "फुटबॉल",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": false,
+        "frequency": 4.34,
+        "rank": 4566,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4566.0
+      },
+      {
+        "word": "qwerty",
+        "present": true,
+        "native_form": "क्वेर्टी",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 130552.5
+      },
+      {
+        "word": "letmein",
+        "present": false
+      },
+      {
+        "word": "monkey",
+        "present": true,
+        "native_form": "मोंके",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 130552.5
+      },
+      {
+        "word": "dragon",
+        "present": true,
+        "native_form": "ड्रैगन",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 3.81,
+        "rank": 12677,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 12677.0
+      },
+      {
+        "word": "master",
+        "present": false
+      },
+      {
+        "word": "shadow",
+        "present": true,
+        "native_form": "शादोव",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": false,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 49448.0
+      },
+      {
+        "word": "superman",
+        "present": true,
+        "native_form": "सुपरमैन",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 49448.0
+      }
+    ],
+    "note": "Generic English password vocabulary. Any coverage here is accidental overlap from Aksharantar's transliteration subsources, and it is a confound the benchmark's English control must be read against -- not evidence of Indic awareness."
+  },
+  "full_probe": {
+    "probed": 163,
+    "present": 62,
+    "absent": 101,
+    "coverage": 0.3804,
+    "priced_by_observed_rank": 58,
+    "priced_by_tier_fallback": 4,
+    "rank_coverage_of_present": 0.9355,
+    "by_tier": {
+      "curated_other": 10,
+      "human_romanized": 16,
+      "curated_entities": 33,
+      "mined": 3
+    },
+    "rows": [
+      {
+        "word": "namaste",
+        "present": false
+      },
+      {
+        "word": "namaskar",
+        "present": false
+      },
+      {
+        "word": "dhanyavaad",
+        "present": false
+      },
+      {
+        "word": "dhanyavad",
+        "present": true,
+        "native_form": "धन्यवाद",
+        "tier": "curated_other",
+        "source": "AK-Freq",
+        "model_verified": false,
+        "frequency": 5.19,
+        "rank": 861,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 861.0
+      },
+      {
+        "word": "shukriya",
+        "present": false
+      },
+      {
+        "word": "alvida",
+        "present": true,
+        "native_form": "अलविदा",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 3.96,
+        "rank": 9543,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 9543.0
+      },
+      {
+        "word": "swagat",
+        "present": true,
+        "native_form": "स्वगत",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": true,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 130552.5
+      },
+      {
+        "word": "pranam",
+        "present": false
+      },
+      {
+        "word": "salaam",
+        "present": true,
+        "native_form": "सलाम",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": 4.37,
+        "rank": 4293,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4293.0
+      },
+      {
+        "word": "jaihind",
+        "present": true,
+        "native_form": "जयहिंद",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": true,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 130552.5
+      },
+      {
+        "word": "vandemataram",
+        "present": true,
+        "native_form": "वंदेमातरम",
+        "tier": "curated_other",
+        "source": "AK-Freq",
+        "model_verified": false,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 130552.5
+      },
+      {
+        "word": "maa",
+        "present": false
+      },
+      {
+        "word": "papa",
+        "present": true,
+        "native_form": "पीएपीए",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": false,
+        "frequency": 4.79,
+        "rank": 1946,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1946.0
+      },
+      {
+        "word": "bhai",
+        "present": false
+      },
+      {
+        "word": "behen",
+        "present": false
+      },
+      {
+        "word": "beta",
+        "present": false
+      },
+      {
+        "word": "beti",
+        "present": false
+      },
+      {
+        "word": "dada",
+        "present": false
+      },
+      {
+        "word": "dadi",
+        "present": false
+      },
+      {
+        "word": "nana",
+        "present": true,
+        "native_form": "नाना",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": false,
+        "frequency": 4.17,
+        "rank": 6420,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 6420.0
+      },
+      {
+        "word": "nani",
+        "present": false
+      },
+      {
+        "word": "chacha",
+        "present": false
+      },
+      {
+        "word": "chachi",
+        "present": false
+      },
+      {
+        "word": "mama",
+        "present": false
+      },
+      {
+        "word": "mami",
+        "present": false
+      },
+      {
+        "word": "bua",
+        "present": false
+      },
+      {
+        "word": "didi",
+        "present": false
+      },
+      {
+        "word": "pyaar",
+        "present": true,
+        "native_form": "प्यार",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.68,
+        "rank": 299,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 299.0
+      },
+      {
+        "word": "prem",
+        "present": true,
+        "native_form": "प्रेम",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.4,
+        "rank": 535,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 535.0
+      },
+      {
+        "word": "ishq",
+        "present": false
+      },
+      {
+        "word": "mohabbat",
+        "present": false
+      },
+      {
+        "word": "dil",
+        "present": false
+      },
+      {
+        "word": "jaan",
+        "present": false
+      },
+      {
+        "word": "yaar",
+        "present": true,
+        "native_form": "यार",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": true,
+        "frequency": 4.99,
+        "rank": 1296,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1296.0
+      },
+      {
+        "word": "dost",
+        "present": false
+      },
+      {
+        "word": "dosti",
+        "present": false
+      },
+      {
+        "word": "khushi",
+        "present": false
+      },
+      {
+        "word": "gham",
+        "present": false
+      },
+      {
+        "word": "sapna",
+        "present": false
+      },
+      {
+        "word": "umeed",
+        "present": false
+      },
+      {
+        "word": "izzat",
+        "present": true,
+        "native_form": "इज्जत",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": 4.42,
+        "rank": 3874,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 3874.0
+      },
+      {
+        "word": "ghar",
+        "present": false
+      },
+      {
+        "word": "paani",
+        "present": false
+      },
+      {
+        "word": "khana",
+        "present": false
+      },
+      {
+        "word": "roti",
+        "present": false
+      },
+      {
+        "word": "chai",
+        "present": true,
+        "native_form": "चाई",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": false,
+        "frequency": null,
+        "rank": null,
+        "frequency_source": null,
+        "frequency_matched_via": null,
+        "rank_policy": "tier_fallback",
+        "wordlist_position": 49448.0
+      },
+      {
+        "word": "doodh",
+        "present": false
+      },
+      {
+        "word": "kitab",
+        "present": false
+      },
+      {
+        "word": "school",
+        "present": false
+      },
+      {
+        "word": "gaadi",
+        "present": false
+      },
+      {
+        "word": "paisa",
+        "present": false
+      },
+      {
+        "word": "kaam",
+        "present": false
+      },
+      {
+        "word": "raat",
+        "present": false
+      },
+      {
+        "word": "din",
+        "present": true,
+        "native_form": "दिन",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": false,
+        "frequency": 6.2,
+        "rank": 70,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 70.0
+      },
+      {
+        "word": "subah",
+        "present": true,
+        "native_form": "सुबाह",
+        "tier": "mined",
+        "source": "Samanantar",
+        "model_verified": false,
+        "frequency": 5.56,
+        "rank": 367,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 367.0
+      },
+      {
+        "word": "shaam",
+        "present": false
+      },
+      {
+        "word": "duniya",
+        "present": false
+      },
+      {
+        "word": "zindagi",
+        "present": false
+      },
+      {
+        "word": "raasta",
+        "present": false
+      },
+      {
+        "word": "shahar",
+        "present": true,
+        "native_form": "शहर",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": true,
+        "frequency": 5.57,
+        "rank": 362,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 362.0
+      },
+      {
+        "word": "gaon",
+        "present": false
+      },
+      {
+        "word": "desh",
+        "present": false
+      },
+      {
+        "word": "phool",
+        "present": false
+      },
+      {
+        "word": "aasman",
+        "present": false
+      },
+      {
+        "word": "chand",
+        "present": true,
+        "native_form": "चंद",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.56,
+        "rank": 2935,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2935.0
+      },
+      {
+        "word": "suraj",
+        "present": true,
+        "native_form": "सुरज",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.77,
+        "rank": 2032,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2032.0
+      },
+      {
+        "word": "samundar",
+        "present": false
+      },
+      {
+        "word": "barish",
+        "present": false
+      },
+      {
+        "word": "hawa",
+        "present": false
+      },
+      {
+        "word": "aag",
+        "present": false
+      },
+      {
+        "word": "accha",
+        "present": true,
+        "native_form": "अच्छा",
+        "tier": "mined",
+        "source": "Samanantar",
+        "model_verified": false,
+        "frequency": 5.69,
+        "rank": 288,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 288.0
+      },
+      {
+        "word": "bura",
+        "present": true,
+        "native_form": "बुरा",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.05,
+        "rank": 1145,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1145.0
+      },
+      {
+        "word": "bada",
+        "present": true,
+        "native_form": "बाड़ा",
+        "tier": "curated_other",
+        "source": "AK-Freq",
+        "model_verified": false,
+        "frequency": 3.07,
+        "rank": 38136,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 38136.0
+      },
+      {
+        "word": "chota",
+        "present": false
+      },
+      {
+        "word": "sundar",
+        "present": true,
+        "native_form": "सुंदर",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.94,
+        "rank": 1428,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1428.0
+      },
+      {
+        "word": "khushboo",
+        "present": true,
+        "native_form": "खुशबू",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.14,
+        "rank": 6869,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 6869.0
+      },
+      {
+        "word": "meetha",
+        "present": false
+      },
+      {
+        "word": "garam",
+        "present": false
+      },
+      {
+        "word": "thanda",
+        "present": false
+      },
+      {
+        "word": "jaldi",
+        "present": false
+      },
+      {
+        "word": "dheere",
+        "present": true,
+        "native_form": "धीरे",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": 5.29,
+        "rank": 688,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 688.0
+      },
+      {
+        "word": "chalo",
+        "present": false
+      },
+      {
+        "word": "suno",
+        "present": false
+      },
+      {
+        "word": "dekho",
+        "present": true,
+        "native_form": "देखो",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.23,
+        "rank": 798,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 798.0
+      },
+      {
+        "word": "bolo",
+        "present": false
+      },
+      {
+        "word": "mera",
+        "present": true,
+        "native_form": "मेरा",
+        "tier": "mined",
+        "source": "Samanantar",
+        "model_verified": true,
+        "frequency": 5.78,
+        "rank": 213,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 213.0
+      },
+      {
+        "word": "tera",
+        "present": false
+      },
+      {
+        "word": "hamara",
+        "present": false
+      },
+      {
+        "word": "tumhara",
+        "present": true,
+        "native_form": "तुम्हारा",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.94,
+        "rank": 1433,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1433.0
+      },
+      {
+        "word": "apna",
+        "present": false
+      },
+      {
+        "word": "sabka",
+        "present": true,
+        "native_form": "सबका",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": true,
+        "frequency": 4.93,
+        "rank": 1451,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1451.0
+      },
+      {
+        "word": "kuch",
+        "present": false
+      },
+      {
+        "word": "bahut",
+        "present": false
+      },
+      {
+        "word": "bharat",
+        "present": true,
+        "native_form": "भारत",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": true,
+        "frequency": 6.38,
+        "rank": 41,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 41.0
+      },
+      {
+        "word": "hindustan",
+        "present": false
+      },
+      {
+        "word": "india",
+        "present": false
+      },
+      {
+        "word": "dilli",
+        "present": false
+      },
+      {
+        "word": "mumbai",
+        "present": true,
+        "native_form": "मुंबई",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 5.14,
+        "rank": 972,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 972.0
+      },
+      {
+        "word": "kolkata",
+        "present": true,
+        "native_form": "कोलकाता",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.72,
+        "rank": 2228,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2228.0
+      },
+      {
+        "word": "chennai",
+        "present": true,
+        "native_form": "चेन्नई",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.54,
+        "rank": 3104,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 3104.0
+      },
+      {
+        "word": "bangalore",
+        "present": false
+      },
+      {
+        "word": "hyderabad",
+        "present": true,
+        "native_form": "हैदराबाद",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.71,
+        "rank": 2284,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2284.0
+      },
+      {
+        "word": "jaipur",
+        "present": true,
+        "native_form": "जयपुर",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.82,
+        "rank": 1834,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1834.0
+      },
+      {
+        "word": "lucknow",
+        "present": false
+      },
+      {
+        "word": "punjab",
+        "present": true,
+        "native_form": "पंजाब",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 5.28,
+        "rank": 706,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 706.0
+      },
+      {
+        "word": "gujarat",
+        "present": true,
+        "native_form": "गुजरात",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 5.21,
+        "rank": 836,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 836.0
+      },
+      {
+        "word": "kerala",
+        "present": true,
+        "native_form": "केराला",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 3.38,
+        "rank": 26074,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 26074.0
+      },
+      {
+        "word": "kashmir",
+        "present": true,
+        "native_form": "कश्मीर",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 5.32,
+        "rank": 631,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 631.0
+      },
+      {
+        "word": "ganga",
+        "present": false
+      },
+      {
+        "word": "himalaya",
+        "present": false
+      },
+      {
+        "word": "aditya",
+        "present": true,
+        "native_form": "आदित्य",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 4.24,
+        "rank": 5598,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 5598.0
+      },
+      {
+        "word": "arjun",
+        "present": true,
+        "native_form": "अर्जुन",
+        "tier": "curated_entities",
+        "source": "Wikidata",
+        "model_verified": true,
+        "frequency": 4.74,
+        "rank": 2144,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2144.0
+      },
+      {
+        "word": "rahul",
+        "present": false
+      },
+      {
+        "word": "rohit",
+        "present": false
+      },
+      {
+        "word": "vikram",
+        "present": true,
+        "native_form": "विक्रम",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.22,
+        "rank": 5896,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 5896.0
+      },
+      {
+        "word": "amit",
+        "present": true,
+        "native_form": "अमित",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.97,
+        "rank": 1343,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1343.0
+      },
+      {
+        "word": "sanjay",
+        "present": true,
+        "native_form": "संजय",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 4.76,
+        "rank": 2084,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2084.0
+      },
+      {
+        "word": "raj",
+        "present": true,
+        "native_form": "राज",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 5.29,
+        "rank": 676,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 676.0
+      },
+      {
+        "word": "krishna",
+        "present": true,
+        "native_form": "कृष्णा",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.55,
+        "rank": 3026,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 3026.0
+      },
+      {
+        "word": "shiva",
+        "present": false
+      },
+      {
+        "word": "ganesh",
+        "present": false
+      },
+      {
+        "word": "hanuman",
+        "present": false
+      },
+      {
+        "word": "ram",
+        "present": false
+      },
+      {
+        "word": "sita",
+        "present": false
+      },
+      {
+        "word": "radha",
+        "present": false
+      },
+      {
+        "word": "laxmi",
+        "present": false
+      },
+      {
+        "word": "priya",
+        "present": true,
+        "native_form": "प्रिया",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.1,
+        "rank": 7366,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 7366.0
+      },
+      {
+        "word": "pooja",
+        "present": false
+      },
+      {
+        "word": "neha",
+        "present": false
+      },
+      {
+        "word": "anjali",
+        "present": false
+      },
+      {
+        "word": "kavita",
+        "present": false
+      },
+      {
+        "word": "sunita",
+        "present": false
+      },
+      {
+        "word": "deepak",
+        "present": false
+      },
+      {
+        "word": "manish",
+        "present": false
+      },
+      {
+        "word": "suresh",
+        "present": true,
+        "native_form": "सुरेश",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.35,
+        "rank": 4462,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4462.0
+      },
+      {
+        "word": "ramesh",
+        "present": false
+      },
+      {
+        "word": "ravi",
+        "present": false
+      },
+      {
+        "word": "ajay",
+        "present": false
+      },
+      {
+        "word": "vijay",
+        "present": false
+      },
+      {
+        "word": "anil",
+        "present": false
+      },
+      {
+        "word": "sharma",
+        "present": false
+      },
+      {
+        "word": "verma",
+        "present": false
+      },
+      {
+        "word": "gupta",
+        "present": true,
+        "native_form": "गुप्ता",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.5,
+        "rank": 3318,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 3318.0
+      },
+      {
+        "word": "singh",
+        "present": true,
+        "native_form": "सिंह",
+        "tier": "curated_entities",
+        "source": "AK-NEF",
+        "model_verified": true,
+        "frequency": 5.83,
+        "rank": 199,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 199.0
+      },
+      {
+        "word": "kumar",
+        "present": true,
+        "native_form": "कुमार",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 5.42,
+        "rank": 518,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 518.0
+      },
+      {
+        "word": "yadav",
+        "present": true,
+        "native_form": "यादव",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 5.38,
+        "rank": 548,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 548.0
+      },
+      {
+        "word": "patel",
+        "present": true,
+        "native_form": "पटेल",
+        "tier": "curated_entities",
+        "source": "AK-NEF",
+        "model_verified": true,
+        "frequency": 4.8,
+        "rank": 1900,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1900.0
+      },
+      {
+        "word": "reddy",
+        "present": true,
+        "native_form": "रेड्डी",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.08,
+        "rank": 7585,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 7585.0
+      },
+      {
+        "word": "nair",
+        "present": false
+      },
+      {
+        "word": "iyer",
+        "present": false
+      },
+      {
+        "word": "chopra",
+        "present": true,
+        "native_form": "चोपरा",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 4.35,
+        "rank": 4454,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4454.0
+      },
+      {
+        "word": "kapoor",
+        "present": true,
+        "native_form": "कपूर",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.96,
+        "rank": 1378,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 1378.0
+      },
+      {
+        "word": "mehta",
+        "present": true,
+        "native_form": "मेहता",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.36,
+        "rank": 4378,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4378.0
+      },
+      {
+        "word": "shah",
+        "present": false
+      },
+      {
+        "word": "joshi",
+        "present": false
+      },
+      {
+        "word": "desai",
+        "present": true,
+        "native_form": "देसाई",
+        "tier": "human_romanized",
+        "source": "Dakshina",
+        "model_verified": true,
+        "frequency": 3.92,
+        "rank": 10303,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 10303.0
+      },
+      {
+        "word": "bose",
+        "present": false
+      },
+      {
+        "word": "das",
+        "present": true,
+        "native_form": "दास",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.69,
+        "rank": 2341,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2341.0
+      },
+      {
+        "word": "roy",
+        "present": false
+      },
+      {
+        "word": "mishra",
+        "present": true,
+        "native_form": "मिश्रा",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.56,
+        "rank": 2951,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2951.0
+      },
+      {
+        "word": "tiwari",
+        "present": true,
+        "native_form": "तिवारी",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": true,
+        "frequency": 4.58,
+        "rank": 2841,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 2841.0
+      },
+      {
+        "word": "pandey",
+        "present": true,
+        "native_form": "पांडे",
+        "tier": "curated_other",
+        "source": "Existing",
+        "model_verified": false,
+        "frequency": 4.34,
+        "rank": 4542,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "native_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4542.0
+      },
+      {
+        "word": "agarwal",
+        "present": true,
+        "native_form": "अगरवाल",
+        "tier": "curated_entities",
+        "source": "AK-NEI",
+        "model_verified": false,
+        "frequency": 4.32,
+        "rank": 4740,
+        "frequency_source": "wordfreq-3.1.1/hi/small",
+        "frequency_matched_via": "attested_form",
+        "rank_policy": "observed_rank",
+        "wordlist_position": 4740.0
+      }
+    ]
+  },
+  "accidental_hit_rates": [
+    {
+      "length": 3,
+      "entries": 6999,
+      "space": 17576,
+      "probability": 0.39821347291761494
+    },
+    {
+      "length": 4,
+      "entries": 24967,
+      "space": 456976,
+      "probability": 0.05463525436784426
+    },
+    {
+      "length": 5,
+      "entries": 65834,
+      "space": 11881376,
+      "probability": 0.005540940712590865
+    },
+    {
+      "length": 6,
+      "entries": 70278,
+      "space": 308915776,
+      "probability": 0.00022749890248402205
+    },
+    {
+      "length": 7,
+      "entries": 29925,
+      "space": 8031810176,
+      "probability": 3.725810165362155e-06
+    },
+    {
+      "length": 8,
+      "entries": 28855,
+      "space": 208827064576,
+      "probability": 1.3817653405504143e-07
+    },
+    {
+      "length": 9,
+      "entries": 23579,
+      "space": 5429503678976,
+      "probability": 4.342754217351775e-09
+    },
+    {
+      "length": 10,
+      "entries": 17689,
+      "space": 141167095653376,
+      "probability": 1.2530540433752253e-10
+    }
+  ]
+}

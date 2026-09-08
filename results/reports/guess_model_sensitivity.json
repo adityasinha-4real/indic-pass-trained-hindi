@@ -1,0 +1,1507 @@
+{
+  "generated_at": "2026-09-07T10:53:43+00:00",
+  "project": "IndicPass v0.1.0",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "corpus": {
+    "seed": 42,
+    "generator_version": "1.0",
+    "total_samples": 1400,
+    "categories": {
+      "english": {
+        "samples": 200,
+        "mean_length": 8.26,
+        "min_length": 5,
+        "max_length": 12
+      },
+      "indic_word": {
+        "samples": 200,
+        "mean_length": 5.21,
+        "min_length": 3,
+        "max_length": 12
+      },
+      "indic_numeric": {
+        "samples": 200,
+        "mean_length": 8.77,
+        "min_length": 6,
+        "max_length": 14
+      },
+      "indic_year": {
+        "samples": 200,
+        "mean_length": 9.32,
+        "min_length": 7,
+        "max_length": 14
+      },
+      "indic_symbol": {
+        "samples": 200,
+        "mean_length": 7.91,
+        "min_length": 4,
+        "max_length": 16
+      },
+      "mixed": {
+        "samples": 200,
+        "mean_length": 13.75,
+        "min_length": 7,
+        "max_length": 22
+      },
+      "random": {
+        "samples": 200,
+        "mean_length": 11.02,
+        "min_length": 8,
+        "max_length": 14
+      }
+    },
+    "word_banks": {
+      "indic": 163,
+      "english": 76
+    },
+    "note": "Passwords are generated, never stored. Rows are keyed by sample_id; regenerating from the same seed reproduces the corpus exactly."
+  },
+  "baseline": {
+    "name": "zxcvbn",
+    "version": "4.5.0"
+  },
+  "dictionaries": [
+    {
+      "language": "hin",
+      "entries": 297747,
+      "tiers": [
+        {
+          "name": "human_romanized",
+          "index": 0,
+          "size": 30400,
+          "ranked_size": 13437,
+          "unranked_size": 16963,
+          "offset": 40966
+        },
+        {
+          "name": "curated_entities",
+          "index": 1,
+          "size": 25005,
+          "ranked_size": 1747,
+          "unranked_size": 23258,
+          "offset": 57929
+        },
+        {
+          "name": "curated_other",
+          "index": 2,
+          "size": 122342,
+          "ranked_size": 23612,
+          "unranked_size": 98730,
+          "offset": 81187
+        },
+        {
+          "name": "mined",
+          "index": 3,
+          "size": 120000,
+          "ranked_size": 2170,
+          "unranked_size": 117830,
+          "offset": 179917
+        }
+      ],
+      "frequency_available": true,
+      "ranked_entries": 40966,
+      "frequency_coverage": 0.137587,
+      "frequency_source": {
+        "identifier": "wordfreq-3.1.1/hi/small",
+        "provider": "wordfreq",
+        "version": "3.1.1",
+        "language": "hi",
+        "wordlist": "small",
+        "semantics": "Zipf frequency: log10(occurrences per billion tokens) of the NATIVE-SCRIPT word in a general text corpus. A corpus word frequency -- not a password frequency and not a model score.",
+        "entries": 26653,
+        "license": "Apache-2.0 (package); aggregated corpora under their own terms",
+        "corpora": [
+          "Wikipedia",
+          "OSCAR web text",
+          "Twitter",
+          "Reddit"
+        ],
+        "notes": "wordfreq 3.x is a frozen dataset: its author stopped updating it in 2024, which makes it reproducible but means it reflects pre-2022 text. Only a 'small' list ships for Hindi (~27k words)."
+      },
+      "built_at": "2026-09-07T10:51:55+00:00",
+      "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b"
+    }
+  ],
+  "question": "How much of the shipped configuration's behaviour survives changing the brute-force alphabet assumption, the match-class policy, and the frequency source?",
+  "shipped": [
+    {
+      "category": "english",
+      "samples": 200,
+      "mean_log10_guesses": 7.0789,
+      "median_log10_guesses": 7.417,
+      "mean_score": 2.21,
+      "median_score": 2.0,
+      "match_rate": 0.605,
+      "ranked_match_rate": 0.405,
+      "score_distribution": {
+        "1": 55,
+        "2": 70,
+        "3": 53,
+        "4": 22
+      }
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "mean_log10_guesses": 4.3535,
+      "median_log10_guesses": 4.0,
+      "mean_score": 1.085,
+      "median_score": 1.0,
+      "match_rate": 0.435,
+      "ranked_match_rate": 0.385,
+      "score_distribution": {
+        "0": 13,
+        "1": 160,
+        "2": 24,
+        "3": 3
+      }
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "mean_log10_guesses": 7.8743,
+      "median_log10_guesses": 8.0,
+      "mean_score": 2.55,
+      "median_score": 3.0,
+      "match_rate": 0.455,
+      "ranked_match_rate": 0.42,
+      "score_distribution": {
+        "1": 10,
+        "2": 89,
+        "3": 82,
+        "4": 19
+      }
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "mean_log10_guesses": 6.8472,
+      "median_log10_guesses": 6.4362,
+      "mean_score": 1.96,
+      "median_score": 2.0,
+      "match_rate": 0.475,
+      "ranked_match_rate": 0.44,
+      "score_distribution": {
+        "1": 51,
+        "2": 112,
+        "3": 31,
+        "4": 6
+      }
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "mean_log10_guesses": 6.9801,
+      "median_log10_guesses": 7.0,
+      "mean_score": 2.115,
+      "median_score": 2.0,
+      "match_rate": 0.455,
+      "ranked_match_rate": 0.415,
+      "score_distribution": {
+        "1": 62,
+        "2": 67,
+        "3": 57,
+        "4": 14
+      }
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "mean_log10_guesses": 11.9235,
+      "median_log10_guesses": 12.1649,
+      "mean_score": 3.71,
+      "median_score": 4.0,
+      "match_rate": 0.775,
+      "ranked_match_rate": 0.675,
+      "score_distribution": {
+        "2": 10,
+        "3": 38,
+        "4": 152
+      }
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "mean_log10_guesses": 11.0115,
+      "median_log10_guesses": 11.0,
+      "mean_score": 3.74,
+      "median_score": 4.0,
+      "match_rate": 0.01,
+      "ranked_match_rate": 0.01,
+      "score_distribution": {
+        "3": 52,
+        "4": 148
+      }
+    }
+  ],
+  "arms": [
+    {
+      "name": "observed_cardinality",
+      "description": "Brute-force alphabet taken from the character classes present (26/36/95) instead of the shipped flat 10. The Milestone 1 policy, and the one that made the whole random-control divergence.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 8.1123,
+          "median_log10_guesses": 7.9441,
+          "mean_score": 2.485,
+          "median_score": 2.0,
+          "match_rate": 0.935,
+          "ranked_match_rate": 0.42,
+          "score_distribution": {
+            "1": 53,
+            "2": 52,
+            "3": 40,
+            "4": 55
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 5.4705,
+          "median_log10_guesses": 5.6599,
+          "mean_score": 1.405,
+          "median_score": 1.0,
+          "match_rate": 0.61,
+          "ranked_match_rate": 0.47,
+          "score_distribution": {
+            "0": 13,
+            "1": 112,
+            "2": 58,
+            "3": 15,
+            "4": 2
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 9.2172,
+          "median_log10_guesses": 9.0369,
+          "mean_score": 2.995,
+          "median_score": 3.0,
+          "match_rate": 0.7,
+          "ranked_match_rate": 0.525,
+          "score_distribution": {
+            "1": 9,
+            "2": 54,
+            "3": 66,
+            "4": 71
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 7.9922,
+          "median_log10_guesses": 8.2939,
+          "mean_score": 2.475,
+          "median_score": 3.0,
+          "match_rate": 0.74,
+          "ranked_match_rate": 0.565,
+          "score_distribution": {
+            "1": 45,
+            "2": 45,
+            "3": 80,
+            "4": 30
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 9.469,
+          "median_log10_guesses": 9.2496,
+          "mean_score": 2.975,
+          "median_score": 3.0,
+          "match_rate": 0.765,
+          "ranked_match_rate": 0.525,
+          "score_distribution": {
+            "1": 35,
+            "2": 9,
+            "3": 82,
+            "4": 74
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 15.151,
+          "median_log10_guesses": 15.3589,
+          "mean_score": 3.87,
+          "median_score": 4.0,
+          "match_rate": 1.0,
+          "ranked_match_rate": 0.745,
+          "score_distribution": {
+            "2": 6,
+            "3": 14,
+            "4": 180
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 18.3436,
+          "median_log10_guesses": 17.9097,
+          "mean_score": 3.995,
+          "median_score": 4.0,
+          "match_rate": 0.165,
+          "ranked_match_rate": 0.07,
+          "score_distribution": {
+            "3": 1,
+            "4": 199
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 1.0334,
+        "indic_word": 1.117,
+        "indic_numeric": 1.3429,
+        "indic_year": 1.145,
+        "indic_symbol": 2.4889,
+        "mixed": 3.2275,
+        "random": 7.3321
+      }
+    },
+    {
+      "name": "no_frequency",
+      "description": "The Milestone 1 pricing: provenance tier only, no observed frequency. Isolates what the external frequency table bought.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 7.1202,
+          "median_log10_guesses": 7.483,
+          "mean_score": 2.19,
+          "median_score": 2.0,
+          "match_rate": 0.62,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 59,
+            "2": 65,
+            "3": 55,
+            "4": 21
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 4.7705,
+          "median_log10_guesses": 4.6325,
+          "mean_score": 1.17,
+          "median_score": 1.0,
+          "match_rate": 0.315,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 169,
+            "2": 28,
+            "3": 3
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 8.3101,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.77,
+          "median_score": 3.0,
+          "match_rate": 0.31,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 1,
+            "2": 68,
+            "3": 107,
+            "4": 24
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 7.3081,
+          "median_log10_guesses": 7.3683,
+          "mean_score": 2.19,
+          "median_score": 2.0,
+          "match_rate": 0.365,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 6,
+            "2": 157,
+            "3": 30,
+            "4": 7
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 7.4439,
+          "median_log10_guesses": 7.0,
+          "mean_score": 2.33,
+          "median_score": 2.0,
+          "match_rate": 0.37,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 42,
+            "2": 64,
+            "3": 80,
+            "4": 14
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 12.5548,
+          "median_log10_guesses": 12.96,
+          "mean_score": 3.82,
+          "median_score": 4.0,
+          "match_rate": 0.695,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "2": 2,
+            "3": 32,
+            "4": 166
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 11.015,
+          "median_log10_guesses": 11.0,
+          "mean_score": 3.745,
+          "median_score": 4.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "3": 51,
+            "4": 149
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 0.0413,
+        "indic_word": 0.417,
+        "indic_numeric": 0.4358,
+        "indic_year": 0.4609,
+        "indic_symbol": 0.4638,
+        "mixed": 0.6313,
+        "random": 0.0035
+      }
+    },
+    {
+      "name": "no_substring_matches",
+      "description": "Only whole-password dictionary hits count. The strictest reading of 'prefer exact matches'.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 7.6386,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.56,
+          "median_score": 3.0,
+          "match_rate": 0.255,
+          "ranked_match_rate": 0.18,
+          "score_distribution": {
+            "1": 52,
+            "2": 37,
+            "3": 58,
+            "4": 53
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 4.4231,
+          "median_log10_guesses": 4.0,
+          "mean_score": 1.145,
+          "median_score": 1.0,
+          "match_rate": 0.34,
+          "ranked_match_rate": 0.315,
+          "score_distribution": {
+            "0": 13,
+            "1": 152,
+            "2": 29,
+            "3": 5,
+            "4": 1
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 8.6606,
+          "median_log10_guesses": 8.5966,
+          "mean_score": 3.01,
+          "median_score": 3.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 1,
+            "2": 49,
+            "3": 97,
+            "4": 53
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 7.7605,
+          "median_log10_guesses": 7.4347,
+          "mean_score": 2.43,
+          "median_score": 2.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 6,
+            "2": 113,
+            "3": 70,
+            "4": 11
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 7.91,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.63,
+          "median_score": 3.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "1": 23,
+            "2": 70,
+            "3": 65,
+            "4": 42
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 13.7484,
+          "median_log10_guesses": 14.0,
+          "mean_score": 3.945,
+          "median_score": 4.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "2": 1,
+            "3": 9,
+            "4": 190
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 11.015,
+          "median_log10_guesses": 11.0,
+          "mean_score": 3.745,
+          "median_score": 4.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "3": 51,
+            "4": 149
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 0.5597,
+        "indic_word": 0.0696,
+        "indic_numeric": 0.7863,
+        "indic_year": 0.9133,
+        "indic_symbol": 0.9299,
+        "mixed": 1.8249,
+        "random": 0.0035
+      }
+    },
+    {
+      "name": "no_fragment_matches",
+      "description": "Sub-threshold hits dropped rather than penalised.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 7.0789,
+          "median_log10_guesses": 7.417,
+          "mean_score": 2.21,
+          "median_score": 2.0,
+          "match_rate": 0.605,
+          "ranked_match_rate": 0.405,
+          "score_distribution": {
+            "1": 55,
+            "2": 70,
+            "3": 53,
+            "4": 22
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 4.3535,
+          "median_log10_guesses": 4.0,
+          "mean_score": 1.085,
+          "median_score": 1.0,
+          "match_rate": 0.435,
+          "ranked_match_rate": 0.385,
+          "score_distribution": {
+            "0": 13,
+            "1": 160,
+            "2": 24,
+            "3": 3
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 7.8743,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.55,
+          "median_score": 3.0,
+          "match_rate": 0.455,
+          "ranked_match_rate": 0.42,
+          "score_distribution": {
+            "1": 10,
+            "2": 89,
+            "3": 82,
+            "4": 19
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 6.8484,
+          "median_log10_guesses": 6.4362,
+          "mean_score": 1.96,
+          "median_score": 2.0,
+          "match_rate": 0.47,
+          "ranked_match_rate": 0.435,
+          "score_distribution": {
+            "1": 51,
+            "2": 112,
+            "3": 31,
+            "4": 6
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 6.9801,
+          "median_log10_guesses": 7.0,
+          "mean_score": 2.115,
+          "median_score": 2.0,
+          "match_rate": 0.455,
+          "ranked_match_rate": 0.415,
+          "score_distribution": {
+            "1": 62,
+            "2": 67,
+            "3": 57,
+            "4": 14
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 11.9235,
+          "median_log10_guesses": 12.1649,
+          "mean_score": 3.71,
+          "median_score": 4.0,
+          "match_rate": 0.775,
+          "ranked_match_rate": 0.675,
+          "score_distribution": {
+            "2": 10,
+            "3": 38,
+            "4": 152
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 11.015,
+          "median_log10_guesses": 11.0,
+          "mean_score": 3.745,
+          "median_score": 4.0,
+          "match_rate": 0.0,
+          "ranked_match_rate": 0.0,
+          "score_distribution": {
+            "3": 51,
+            "4": 149
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 0.0,
+        "indic_word": 0.0,
+        "indic_numeric": 0.0,
+        "indic_year": 0.0012,
+        "indic_symbol": 0.0,
+        "mixed": 0.0,
+        "random": 0.0035
+      }
+    },
+    {
+      "name": "fragment_penalty_1",
+      "description": "Fragments priced identically to real words -- the uncorrected behaviour the class penalty exists to fix.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 7.0789,
+          "median_log10_guesses": 7.417,
+          "mean_score": 2.21,
+          "median_score": 2.0,
+          "match_rate": 0.605,
+          "ranked_match_rate": 0.405,
+          "score_distribution": {
+            "1": 55,
+            "2": 70,
+            "3": 53,
+            "4": 22
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 4.3489,
+          "median_log10_guesses": 4.0,
+          "mean_score": 1.08,
+          "median_score": 1.0,
+          "match_rate": 0.44,
+          "ranked_match_rate": 0.395,
+          "score_distribution": {
+            "0": 13,
+            "1": 160,
+            "2": 25,
+            "3": 2
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 7.8487,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.55,
+          "median_score": 3.0,
+          "match_rate": 0.48,
+          "ranked_match_rate": 0.45,
+          "score_distribution": {
+            "1": 10,
+            "2": 89,
+            "3": 82,
+            "4": 19
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 6.8398,
+          "median_log10_guesses": 6.4362,
+          "mean_score": 1.955,
+          "median_score": 2.0,
+          "match_rate": 0.48,
+          "ranked_match_rate": 0.45,
+          "score_distribution": {
+            "1": 51,
+            "2": 112,
+            "3": 32,
+            "4": 5
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 6.9691,
+          "median_log10_guesses": 7.0,
+          "mean_score": 2.11,
+          "median_score": 2.0,
+          "match_rate": 0.465,
+          "ranked_match_rate": 0.435,
+          "score_distribution": {
+            "1": 63,
+            "2": 66,
+            "3": 57,
+            "4": 14
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 11.9011,
+          "median_log10_guesses": 12.1649,
+          "mean_score": 3.705,
+          "median_score": 4.0,
+          "match_rate": 0.79,
+          "ranked_match_rate": 0.7,
+          "score_distribution": {
+            "2": 11,
+            "3": 37,
+            "4": 152
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 10.9845,
+          "median_log10_guesses": 11.0,
+          "mean_score": 3.735,
+          "median_score": 4.0,
+          "match_rate": 0.04,
+          "ranked_match_rate": 0.04,
+          "score_distribution": {
+            "3": 53,
+            "4": 147
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 0.0,
+        "indic_word": -0.0046,
+        "indic_numeric": -0.0256,
+        "indic_year": -0.0074,
+        "indic_symbol": -0.011,
+        "mixed": -0.0224,
+        "random": -0.027
+      }
+    },
+    {
+      "name": "min_substring_6",
+      "description": "The substring threshold raised from 4 to 6, where a random hit has probability 2e-4 rather than 0.055.",
+      "by_category": [
+        {
+          "category": "english",
+          "samples": 200,
+          "mean_log10_guesses": 7.1242,
+          "median_log10_guesses": 7.417,
+          "mean_score": 2.23,
+          "median_score": 2.0,
+          "match_rate": 0.55,
+          "ranked_match_rate": 0.345,
+          "score_distribution": {
+            "1": 55,
+            "2": 69,
+            "3": 51,
+            "4": 25
+          }
+        },
+        {
+          "category": "indic_word",
+          "samples": 200,
+          "mean_log10_guesses": 4.3948,
+          "median_log10_guesses": 4.0,
+          "mean_score": 1.1,
+          "median_score": 1.0,
+          "match_rate": 0.4,
+          "ranked_match_rate": 0.355,
+          "score_distribution": {
+            "0": 13,
+            "1": 158,
+            "2": 26,
+            "3": 2,
+            "4": 1
+          }
+        },
+        {
+          "category": "indic_numeric",
+          "samples": 200,
+          "mean_log10_guesses": 8.0552,
+          "median_log10_guesses": 8.0,
+          "mean_score": 2.67,
+          "median_score": 3.0,
+          "match_rate": 0.325,
+          "ranked_match_rate": 0.29,
+          "score_distribution": {
+            "1": 4,
+            "2": 79,
+            "3": 96,
+            "4": 21
+          }
+        },
+        {
+          "category": "indic_year",
+          "samples": 200,
+          "mean_log10_guesses": 7.0262,
+          "median_log10_guesses": 6.4917,
+          "mean_score": 2.075,
+          "median_score": 2.0,
+          "match_rate": 0.405,
+          "ranked_match_rate": 0.37,
+          "score_distribution": {
+            "1": 28,
+            "2": 135,
+            "3": 31,
+            "4": 6
+          }
+        },
+        {
+          "category": "indic_symbol",
+          "samples": 200,
+          "mean_log10_guesses": 7.1223,
+          "median_log10_guesses": 7.0,
+          "mean_score": 2.195,
+          "median_score": 2.0,
+          "match_rate": 0.4,
+          "ranked_match_rate": 0.36,
+          "score_distribution": {
+            "1": 54,
+            "2": 68,
+            "3": 63,
+            "4": 15
+          }
+        },
+        {
+          "category": "mixed",
+          "samples": 200,
+          "mean_log10_guesses": 12.1561,
+          "median_log10_guesses": 12.4412,
+          "mean_score": 3.75,
+          "median_score": 4.0,
+          "match_rate": 0.695,
+          "ranked_match_rate": 0.57,
+          "score_distribution": {
+            "2": 8,
+            "3": 34,
+            "4": 158
+          }
+        },
+        {
+          "category": "random",
+          "samples": 200,
+          "mean_log10_guesses": 11.0115,
+          "median_log10_guesses": 11.0,
+          "mean_score": 3.74,
+          "median_score": 4.0,
+          "match_rate": 0.01,
+          "ranked_match_rate": 0.01,
+          "score_distribution": {
+            "3": 52,
+            "4": 148
+          }
+        }
+      ],
+      "delta_vs_shipped": {
+        "english": 0.0453,
+        "indic_word": 0.0413,
+        "indic_numeric": 0.1809,
+        "indic_year": 0.179,
+        "indic_symbol": 0.1422,
+        "mixed": 0.2326,
+        "random": 0.0
+      }
+    }
+  ],
+  "false_matches": {
+    "shipped": {
+      "seed": 42,
+      "samples_per_cell": 500,
+      "rows": [
+        {
+          "alphabet": "lower",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.794,
+          "mean_offered": 1.712,
+          "median_offered": 1.0,
+          "accepted_rate": 0.004,
+          "mean_accepted": 0.004,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.902,
+          "mean_offered": 2.618,
+          "median_offered": 2.0,
+          "accepted_rate": 0.006,
+          "mean_accepted": 0.006,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.964,
+          "mean_offered": 3.552,
+          "median_offered": 3.0,
+          "accepted_rate": 0.01,
+          "mean_accepted": 0.01,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.984,
+          "mean_offered": 4.71,
+          "median_offered": 4.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.992,
+          "mean_offered": 5.312,
+          "median_offered": 5.0,
+          "accepted_rate": 0.012,
+          "mean_accepted": 0.012,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.562,
+          "mean_offered": 1.056,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.66,
+          "mean_offered": 1.49,
+          "median_offered": 1.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.772,
+          "mean_offered": 2.02,
+          "median_offered": 2.0,
+          "accepted_rate": 0.006,
+          "mean_accepted": 0.006,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.846,
+          "mean_offered": 2.58,
+          "median_offered": 2.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.896,
+          "mean_offered": 3.002,
+          "median_offered": 3.0,
+          "accepted_rate": 0.004,
+          "mean_accepted": 0.004,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.466,
+          "mean_offered": 0.79,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.55,
+          "mean_offered": 0.992,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.622,
+          "mean_offered": 1.392,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.7,
+          "mean_offered": 1.566,
+          "median_offered": 1.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.738,
+          "mean_offered": 1.812,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        }
+      ],
+      "worst_accepted_rate": 0.012,
+      "note": "offered = the matcher found a dictionary span. accepted = one survived into the winning segmentation, so the guess estimate rests on it. Only the second changes an answer; the gap between them is the segmentation search rejecting fragments that are more expensive than calling the span unexplained."
+    },
+    "fragment_penalty_1": {
+      "seed": 42,
+      "samples_per_cell": 500,
+      "rows": [
+        {
+          "alphabet": "lower",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.794,
+          "mean_offered": 1.712,
+          "median_offered": 1.0,
+          "accepted_rate": 0.006,
+          "mean_accepted": 0.006,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.902,
+          "mean_offered": 2.618,
+          "median_offered": 2.0,
+          "accepted_rate": 0.008,
+          "mean_accepted": 0.008,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.964,
+          "mean_offered": 3.552,
+          "median_offered": 3.0,
+          "accepted_rate": 0.032,
+          "mean_accepted": 0.032,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.984,
+          "mean_offered": 4.71,
+          "median_offered": 4.0,
+          "accepted_rate": 0.014,
+          "mean_accepted": 0.014,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.992,
+          "mean_offered": 5.312,
+          "median_offered": 5.0,
+          "accepted_rate": 0.022,
+          "mean_accepted": 0.022,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.562,
+          "mean_offered": 1.056,
+          "median_offered": 1.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.66,
+          "mean_offered": 1.49,
+          "median_offered": 1.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.772,
+          "mean_offered": 2.02,
+          "median_offered": 2.0,
+          "accepted_rate": 0.01,
+          "mean_accepted": 0.01,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.846,
+          "mean_offered": 2.58,
+          "median_offered": 2.0,
+          "accepted_rate": 0.01,
+          "mean_accepted": 0.01,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.896,
+          "mean_offered": 3.002,
+          "median_offered": 3.0,
+          "accepted_rate": 0.014,
+          "mean_accepted": 0.014,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.466,
+          "mean_offered": 0.79,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.55,
+          "mean_offered": 0.992,
+          "median_offered": 1.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.622,
+          "mean_offered": 1.392,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.7,
+          "mean_offered": 1.566,
+          "median_offered": 1.0,
+          "accepted_rate": 0.008,
+          "mean_accepted": 0.008,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.738,
+          "mean_offered": 1.812,
+          "median_offered": 1.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        }
+      ],
+      "worst_accepted_rate": 0.032,
+      "note": "offered = the matcher found a dictionary span. accepted = one survived into the winning segmentation, so the guess estimate rests on it. Only the second changes an answer; the gap between them is the segmentation search rejecting fragments that are more expensive than calling the span unexplained."
+    },
+    "no_fragment_matches": {
+      "seed": 42,
+      "samples_per_cell": 500,
+      "rows": [
+        {
+          "alphabet": "lower",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.134,
+          "mean_offered": 0.162,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.246,
+          "mean_offered": 0.316,
+          "median_offered": 0.0,
+          "accepted_rate": 0.006,
+          "mean_accepted": 0.006,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.304,
+          "mean_offered": 0.398,
+          "median_offered": 0.0,
+          "accepted_rate": 0.006,
+          "mean_accepted": 0.006,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.394,
+          "mean_offered": 0.568,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "lower",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.396,
+          "mean_offered": 0.624,
+          "median_offered": 0.0,
+          "accepted_rate": 0.004,
+          "mean_accepted": 0.004,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.094,
+          "mean_offered": 0.118,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.114,
+          "mean_offered": 0.138,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.16,
+          "mean_offered": 0.202,
+          "median_offered": 0.0,
+          "accepted_rate": 0.004,
+          "mean_accepted": 0.004,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.236,
+          "mean_offered": 0.304,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "alnum",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.214,
+          "mean_offered": 0.28,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 6,
+          "samples": 500,
+          "offered_rate": 0.058,
+          "mean_offered": 0.064,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 8,
+          "samples": 500,
+          "offered_rate": 0.056,
+          "mean_offered": 0.07,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 10,
+          "samples": 500,
+          "offered_rate": 0.11,
+          "mean_offered": 0.134,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 12,
+          "samples": 500,
+          "offered_rate": 0.112,
+          "mean_offered": 0.146,
+          "median_offered": 0.0,
+          "accepted_rate": 0.002,
+          "mean_accepted": 0.002,
+          "median_accepted": 0.0
+        },
+        {
+          "alphabet": "full",
+          "length": 14,
+          "samples": 500,
+          "offered_rate": 0.124,
+          "mean_offered": 0.14,
+          "median_offered": 0.0,
+          "accepted_rate": 0.0,
+          "mean_accepted": 0.0,
+          "median_accepted": 0.0
+        }
+      ],
+      "worst_accepted_rate": 0.006,
+      "note": "offered = the matcher found a dictionary span. accepted = one survived into the winning segmentation, so the guess estimate rests on it. Only the second changes an answer; the gap between them is the segmentation search rejecting fragments that are more expensive than calling the span unexplained."
+    }
+  },
+  "cardinality_note": "Both estimators now charge a flat 10 guesses per unexplained character, so they differ in their lexicon and not in this. The observed_cardinality arm restores the classical alphabet-size model (26/36/95) that IndicPass shipped with in Milestone 1: it was responsible for essentially the whole divergence from the baseline on random controls, where there is no lexical structure to find and therefore nothing the Indic dictionary could have contributed."
+}

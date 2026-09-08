@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="792" viewBox="0 0 900 792" role="img" aria-label="Rank correlation per benchmark partition (M5)">
+<rect width="900" height="792" fill="#ffffff"/>
+<text x="16" y="26" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#111111">Rank correlation per benchmark partition (M5)</text>
+<text x="16" y="45" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#555555">Populations are NOT comparable with each other: each is conditional on its own coverage and its own n. Bars are omitted where the statistic is undefined.</text>
+<line x1="230.0" y1="62" x2="230.0" y2="746" stroke="#999999" stroke-width="1"/>
+<text x="230.0" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0</text>
+<line x1="352.2" y1="62" x2="352.2" y2="746" stroke="#e6e6e6" stroke-width="1"/>
+<text x="352.2" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.2</text>
+<line x1="474.4" y1="62" x2="474.4" y2="746" stroke="#e6e6e6" stroke-width="1"/>
+<text x="474.4" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.4</text>
+<line x1="596.6" y1="62" x2="596.6" y2="746" stroke="#e6e6e6" stroke-width="1"/>
+<text x="596.6" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.6</text>
+<line x1="718.8" y1="62" x2="718.8" y2="746" stroke="#e6e6e6" stroke-width="1"/>
+<text x="718.8" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.8</text>
+<line x1="841.0" y1="62" x2="841.0" y2="746" stroke="#e6e6e6" stroke-width="1"/>
+<text x="841.0" y="762" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">1</text>
+<text x="220" y="104.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">english_control  (n=200)</text>
+<rect x="230.0" y="67.0" width="360.9" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="595.9" y="81.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.591</text>
+<rect x="230.0" y="89.0" width="470.2" height="16" fill="#c55a11" rx="1.5"/>
+<text x="705.2" y="103.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.769</text>
+<rect x="230.0" y="111.0" width="394.6" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="629.6" y="125.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.646</text>
+<text x="220" y="180.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">indic_in_lexicon  (n=330)</text>
+<rect x="230.0" y="143.0" width="465.2" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="700.2" y="157.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.761</text>
+<rect x="230.0" y="165.0" width="531.2" height="16" fill="#c55a11" rx="1.5"/>
+<text x="766.2" y="179.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.869</text>
+<rect x="230.0" y="187.0" width="438.8" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="673.8" y="201.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.718</text>
+<text x="220" y="256.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">oov_name  (n=161)</text>
+<rect x="230.0" y="219.0" width="553.7" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="788.7" y="233.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.906</text>
+<rect x="230.0" y="241.0" width="524.4" height="16" fill="#c55a11" rx="1.5"/>
+<text x="759.4" y="255.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.858</text>
+<rect x="230.0" y="263.0" width="474.3" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="709.3" y="277.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.776</text>
+<text x="220" y="332.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">oov_spelling_variant  (n=134)</text>
+<rect x="230.0" y="295.0" width="573.3" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="808.3" y="309.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.938</text>
+<rect x="230.0" y="317.0" width="530.9" height="16" fill="#c55a11" rx="1.5"/>
+<text x="765.9" y="331.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.869</text>
+<rect x="230.0" y="339.0" width="513.7" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="748.7" y="353.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.841</text>
+<text x="220" y="408.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">oov_morphological_variant  (n=27)</text>
+<rect x="230.0" y="371.0" width="594.7" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="829.7" y="385.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.973</text>
+<rect x="230.0" y="393.0" width="567.9" height="16" fill="#c55a11" rx="1.5"/>
+<text x="802.9" y="407.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.929</text>
+<rect x="230.0" y="415.0" width="572.9" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="807.9" y="429.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.938</text>
+<text x="220" y="484.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">oov_stem_suffix  (n=34)</text>
+<rect x="230.0" y="447.0" width="548.2" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="783.2" y="461.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.897</text>
+<rect x="230.0" y="469.0" width="515.1" height="16" fill="#c55a11" rx="1.5"/>
+<text x="750.1" y="483.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.843</text>
+<rect x="230.0" y="491.0" width="287.2" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="522.2" y="505.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.470</text>
+<text x="220" y="560.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">oov_other  (n=112)</text>
+<rect x="230.0" y="523.0" width="561.8" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="796.8" y="537.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.919</text>
+<rect x="230.0" y="545.0" width="508.2" height="16" fill="#c55a11" rx="1.5"/>
+<text x="743.2" y="559.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.832</text>
+<rect x="230.0" y="567.0" width="515.9" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="750.9" y="581.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.844</text>
+<text x="220" y="636.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">mixed_construction  (n=86)</text>
+<rect x="230.0" y="599.0" width="385.1" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="620.1" y="613.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.630</text>
+<rect x="230.0" y="621.0" width="473.4" height="16" fill="#c55a11" rx="1.5"/>
+<text x="708.4" y="635.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.775</text>
+<rect x="230.0" y="643.0" width="341.2" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="576.2" y="657.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.558</text>
+<text x="220" y="712.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">random_control  (n=7)</text>
+<rect x="230.0" y="675.0" width="88.2" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="323.2" y="689.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.144</text>
+<rect x="230.0" y="697.0" width="88.2" height="16" fill="#c55a11" rx="1.5"/>
+<text x="323.2" y="711.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.144</text>
+<rect x="230.0" y="719.0" width="33.4" height="16" fill="#7f7f7f" rx="1.5"/>
+<text x="268.4" y="733.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.055</text>
+<rect x="230" y="771" width="11" height="11" fill="#1f4e79" rx="1.5"/>
+<text x="246" y="780" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#333333">IndicPass (M2)</text>
+<rect x="344.4" y="771" width="11" height="11" fill="#c55a11" rx="1.5"/>
+<text x="360.4" y="780" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#333333">PCFG (M3)</text>
+<rect x="425.79999999999995" y="771" width="11" height="11" fill="#7f7f7f" rx="1.5"/>
+<text x="441.79999999999995" y="780" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#333333">zxcvbn 4.5.0</text>
+<text x="888" y="780" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="end">Spearman rho (higher is better)</text>
+</svg>

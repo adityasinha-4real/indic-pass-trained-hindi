@@ -10,10 +10,11 @@ from __future__ import annotations
 
 import os
 import unicodedata
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
 import yaml
 
@@ -32,6 +33,7 @@ _CONFIG_FILES: dict[str, str] = {
     "project": "project.yaml",
     "languages": "languages.yaml",
     "dataset": "dataset.yaml",
+    "password": "password.yaml",
 }
 
 
@@ -136,10 +138,12 @@ class Config:
         project: dict[str, Any],
         languages: dict[str, Any],
         dataset: dict[str, Any],
+        password: dict[str, Any] | None = None,
     ) -> None:
         self.root = root
         self.project = project
         self.dataset = dataset
+        self.password = dict(password or {})
         self._languages_raw = languages
         self._languages = _build_languages(languages)
         self._alias_index = _build_alias_index(self._languages, languages.get("aliases") or {})
@@ -289,6 +293,25 @@ class Config:
     def validation(self) -> dict[str, Any]:
         return dict(self.dataset.get("validation", {}))
 
+    # -- password engine ---------------------------------------------------
+
+    def password_section(self, key: str) -> dict[str, Any]:
+        """Return one top-level block of ``config/password.yaml``.
+
+        Raises rather than returning ``{}`` for a missing block: the guess
+        model has no safe default costs, and silently scoring passwords with a
+        half-empty configuration would produce numbers that look real.
+        """
+        if key not in self.password:
+            known = ", ".join(sorted(self.password)) or "<none>"
+            raise ConfigError(
+                f"config/password.yaml has no {key!r} section. Present: {known}"
+            )
+        block = self.password[key]
+        if not isinstance(block, dict):
+            raise ConfigError(f"password.{key} must be a mapping, got {type(block).__name__}.")
+        return dict(block)
+
     def __repr__(self) -> str:  # pragma: no cover - display only
         return f"<Config {self.name} v{self.version} root={self.root}>"
 
@@ -352,6 +375,7 @@ def _load_cached(root: Path) -> Config:
         project=loaded["project"],
         languages=loaded["languages"],
         dataset=loaded["dataset"],
+        password=loaded["password"],
     )
 
 

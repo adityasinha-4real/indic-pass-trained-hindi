@@ -1,0 +1,126 @@
+{
+  "report": "verify_reproducibility",
+  "generated_at": "2026-09-08T05:11:41+00:00",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "project": "IndicPass v0.1.0",
+  "language": "hin",
+  "python": "3.14.3",
+  "excluded": [
+    "generated_at",
+    "reproducibility"
+  ],
+  "experiments": [
+    {
+      "name": "coverage",
+      "milestone": "M2",
+      "script": "indicdict_coverage.py",
+      "seconds": 10.4,
+      "reports": [
+        {
+          "report": "indicdict_coverage_hin",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:06366a6d7c8a8b140ec5bba7475be83d6a2506bb361a6254865a0602ea2f601f",
+          "second_process_sha256": "sha256:06366a6d7c8a8b140ec5bba7475be83d6a2506bb361a6254865a0602ea2f601f",
+          "bytes": 45400
+        }
+      ]
+    },
+    {
+      "name": "benchmark",
+      "milestone": "M2",
+      "script": "password_benchmark.py",
+      "seconds": 103.0,
+      "reports": [
+        {
+          "report": "password_benchmark_hin",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:65fb95a5f27677051377d6882149b6c1ab7b66f623db5dbb0473117719b5de97",
+          "second_process_sha256": "sha256:65fb95a5f27677051377d6882149b6c1ab7b66f623db5dbb0473117719b5de97",
+          "bytes": 458991
+        },
+        {
+          "report": "mined_tier_ablation",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:44f64f0672511ac6e49b1314c041150a81db1f19af99fe340cbf584c87a8acf2",
+          "second_process_sha256": "sha256:44f64f0672511ac6e49b1314c041150a81db1f19af99fe340cbf584c87a8acf2",
+          "bytes": 36117
+        },
+        {
+          "report": "guess_model_sensitivity",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:ab5905b88b7637f7b784c4bcc8ce6c8192be9b3d3f25ed4d72c75c1215f54c20",
+          "second_process_sha256": "sha256:ab5905b88b7637f7b784c4bcc8ce6c8192be9b3d3f25ed4d72c75c1215f54c20",
+          "bytes": 41392
+        }
+      ]
+    },
+    {
+      "name": "pcfg",
+      "milestone": "M3",
+      "script": "pcfg_benchmark.py",
+      "seconds": 466.5,
+      "reports": [
+        {
+          "report": "pcfg_benchmark_hin",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:22ec6cd0b3b2f37d8e59f445631e6996cb3a1a409ff7102d6ff038cb333bf020",
+          "second_process_sha256": "sha256:22ec6cd0b3b2f37d8e59f445631e6996cb3a1a409ff7102d6ff038cb333bf020",
+          "bytes": 861520
+        },
+        {
+          "report": "pcfg_targeted_hin",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:b14a55af21273336b8b63b96997f718dbbf4a0828c22ff4a83f42e01d51dff17",
+          "second_process_sha256": "sha256:b14a55af21273336b8b63b96997f718dbbf4a0828c22ff4a83f42e01d51dff17",
+          "bytes": 48438
+        }
+      ]
+    },
+    {
+      "name": "reference_attack",
+      "milestone": "M4",
+      "script": "reference_attack.py",
+      "seconds": 129.0,
+      "reports": [
+        {
+          "report": "reference_attack_hin",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:d2281449da676cb07de6b521aa1f4cfa7822c3c1e4766a2ece414a3a21f0beae",
+          "second_process_sha256": "sha256:d2281449da676cb07de6b521aa1f4cfa7822c3c1e4766a2ece414a3a21f0beae",
+          "bytes": 410697
+        }
+      ]
+    },
+    {
+      "name": "oov_attack",
+      "milestone": "M5",
+      "script": "milestone5_oov_attack.py",
+      "seconds": 530.4,
+      "reports": [
+        {
+          "report": "milestone5_oov_attack",
+          "status": "compared",
+          "identical": true,
+          "sha256": "sha256:d1e94bfefe9449390eeb7f062bae6f976a7c86b5890730f3d1b83b41bfd7b2b7",
+          "second_process_sha256": "sha256:d1e94bfefe9449390eeb7f062bae6f976a7c86b5890730f3d1b83b41bfd7b2b7",
+          "bytes": 1844140
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compared": 8,
+    "identical": 8,
+    "not_compared": 0,
+    "failures": [],
+    "all_identical": true
+  },
+  "method": "Each pipeline is run twice in separate interpreters, each writing to its own directory. The two JSON reports are canonicalised (volatile keys removed, remaining keys sorted) and compared byte for byte. A second call inside one process would share caches and module state, either of which could hide a dependence on run order."
+}

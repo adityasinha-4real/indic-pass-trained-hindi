@@ -90,36 +90,6 @@ def read_inputs(args: argparse.Namespace) -> list[str]:
     return [line.strip() for line in sys.stdin if line.strip()]
 
 
-def transliterate(
-    model,
-    tokenizer,
-    words: Sequence[str],
-    *,
-    device,
-    max_length: int,
-    batch_size: int,
-) -> list[str]:
-    """Greedy-decode *words*, preserving order."""
-    import torch
-    from torch.nn.utils.rnn import pad_sequence
-
-    from indicpass.tokenizer import PAD_ID
-
-    outputs: list[str] = []
-    for start in range(0, len(words), batch_size):
-        chunk = words[start : start + batch_size]
-        encoded = [
-            torch.tensor(tokenizer.encode_source(word), dtype=torch.long)
-            for word in chunk
-        ]
-        source = pad_sequence(encoded, batch_first=True, padding_value=PAD_ID).to(device)
-        lengths = torch.tensor([len(ids) for ids in encoded], dtype=torch.long)
-
-        generated = model.greedy_decode(source, lengths, max_length=max_length)
-        outputs.extend(tokenizer.decode_target(row) for row in generated.tolist())
-    return outputs
-
-
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     config = load_config()
@@ -134,32 +104,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 2
 
-    from indicpass.seeding import resolve_device
-    from indicpass.trainer import build_model_from_checkpoint, load_checkpoint
+    from indicpass.inference import load_bundle, transliterate
 
-    checkpoint_path = config.resolve(args.checkpoint)
-    if checkpoint_path.is_dir():
-        from indicpass.model import ModelConfig, Seq2SeqTransliterator
-        from indicpass.tokenizer import CharVocab, TransliterationTokenizer
-        import safetensors.torch
-
-        config_data = json.loads((checkpoint_path / "config.json").read_text(encoding="utf-8"))
-        model = Seq2SeqTransliterator(ModelConfig.from_dict(config_data))
-        state_dict = safetensors.torch.load_file(checkpoint_path / "model.safetensors")
-        model.load_state_dict(state_dict)
-
-        tok_data = json.loads((checkpoint_path / "tokenizer.json").read_text(encoding="utf-8"))
-        tokenizer = TransliterationTokenizer(
-            CharVocab(tok_data["source_vocab"]),
-            CharVocab(tok_data["target_vocab"]),
-            metadata=tok_data.get("metadata") or {},
-        )
-    else:
-        payload = load_checkpoint(checkpoint_path)
-        model, tokenizer = build_model_from_checkpoint(payload)
-
-    device = resolve_device(args.device)
-    model = model.to(device).eval()
+    # Handles both a safetensors bundle directory and a .pt checkpoint.
+    loaded = load_bundle(config.resolve(args.checkpoint), device=args.device)
 
     lines = read_inputs(args)
     for line in lines:
@@ -168,10 +116,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not words:
             continue
         predictions = transliterate(
-            model,
-            tokenizer,
+            loaded,
             words,
-            device=device,
             max_length=args.max_length,
             batch_size=args.batch_size,
         )

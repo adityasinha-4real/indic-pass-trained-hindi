@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="432" viewBox="0 0 900 432" role="img" aria-label="Benchmark coverage: M4 wordlist attack vs M5 character attack">
+<rect width="900" height="432" fill="#ffffff"/>
+<text x="16" y="26" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#111111">Benchmark coverage: M4 wordlist attack vs M5 character attack</text>
+<text x="16" y="45" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#555555">Share of targets the attack reaches and can therefore rank. Both attacks were given the same 10^16 candidate budget. The out-of-lexicon row&#x27;s two denominators differ and are labelled: each attack measures it with its own membership machinery.</text>
+<line x1="230.0" y1="62" x2="230.0" y2="386" stroke="#999999" stroke-width="1"/>
+<text x="230.0" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0</text>
+<line x1="350.8" y1="62" x2="350.8" y2="386" stroke="#e6e6e6" stroke-width="1"/>
+<text x="350.8" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.2</text>
+<line x1="471.6" y1="62" x2="471.6" y2="386" stroke="#e6e6e6" stroke-width="1"/>
+<text x="471.6" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.4</text>
+<line x1="592.4" y1="62" x2="592.4" y2="386" stroke="#e6e6e6" stroke-width="1"/>
+<text x="592.4" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.6</text>
+<line x1="713.2" y1="62" x2="713.2" y2="386" stroke="#e6e6e6" stroke-width="1"/>
+<text x="713.2" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">0.8</text>
+<line x1="834.0" y1="62" x2="834.0" y2="386" stroke="#e6e6e6" stroke-width="1"/>
+<text x="834.0" y="402" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">1</text>
+<text x="220" y="93.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">all 1,400 targets</text>
+<rect x="230.0" y="67.0" width="227.8" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="462.8" y="81.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">37.7%</text>
+<rect x="230.0" y="89.0" width="470.7" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="705.7" y="103.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">77.9%</text>
+<text x="220" y="147.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">out-of-lexicon (M4 n=872, M5 n=968)</text>
+<rect x="230.0" y="121.0" width="1.0" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="235.0" y="135.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.0%</text>
+<rect x="230.0" y="143.0" width="415.6" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="650.6" y="157.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">68.8%</text>
+<text x="220" y="201.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">english control</text>
+<rect x="230.0" y="175.0" width="365.4" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="600.4" y="189.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">60.5%</text>
+<rect x="230.0" y="197.0" width="604.0" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="839.0" y="211.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">100.0%</text>
+<text x="220" y="255.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">indic (single word)</text>
+<rect x="230.0" y="229.0" width="247.6" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="482.6" y="243.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">41.0%</text>
+<rect x="230.0" y="251.0" width="604.0" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="839.0" y="265.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">100.0%</text>
+<text x="220" y="309.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">mixed constructions</text>
+<rect x="230.0" y="283.0" width="117.8" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="352.8" y="297.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">19.5%</text>
+<rect x="230.0" y="305.0" width="259.7" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="494.7" y="319.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">43.0%</text>
+<text x="220" y="363.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#222222" text-anchor="end">random control</text>
+<rect x="230.0" y="337.0" width="3.0" height="16" fill="#8e6c8a" rx="1.5"/>
+<text x="238.0" y="351.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">0.5%</text>
+<rect x="230.0" y="359.0" width="21.1" height="16" fill="#1f4e79" rx="1.5"/>
+<text x="256.1" y="373.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#333333">3.5%</text>
+<rect x="230" y="411" width="11" height="11" fill="#8e6c8a" rx="1.5"/>
+<text x="246" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#333333">M4 (wordlist x rules)</text>
+<rect x="390.6" y="411" width="11" height="11" fill="#1f4e79" rx="1.5"/>
+<text x="406.6" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#333333">M5 (character model)</text>
+<text x="888" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="end">fraction of targets reachable</text>
+</svg>

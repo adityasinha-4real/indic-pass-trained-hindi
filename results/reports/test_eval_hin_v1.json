@@ -1,0 +1,159 @@
+{
+  "generated_at": "2026-09-06T18:53:52+00:00",
+  "project": "IndicPass v0.1.0",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "evaluation": {
+    "split": "test",
+    "held_out": true,
+    "records": 10112,
+    "truncated": false,
+    "limit": null
+  },
+  "metrics": {
+    "cer": 0.108429,
+    "exact_match": 0.561808,
+    "count": 10112
+  },
+  "selection_metrics": {
+    "split": "validation",
+    "cer": 0.10482093997433352,
+    "role": "model selection",
+    "note": "Validation CER is what the best checkpoint was chosen by. It is a model-selection statistic, NOT a held-out result, and must not be reported as the headline accuracy of this model."
+  },
+  "lengths": {
+    "source": {
+      "min": 2,
+      "max": 26,
+      "mean": 7.869
+    },
+    "target": {
+      "min": 1,
+      "max": 20,
+      "mean": 6.871
+    },
+    "prediction": {
+      "min": 1,
+      "max": 20,
+      "mean": 6.859
+    },
+    "average_source_length": 7.8686,
+    "average_target_length": 6.8713
+  },
+  "runtime": {
+    "seconds": 90.409,
+    "records_per_second": 111.85,
+    "device": "CPU",
+    "batch_size": 128,
+    "max_decode_length": 64,
+    "decoding": "greedy"
+  },
+  "model": {
+    "identifier": "indicpass-hin-v1",
+    "kind": "bundle",
+    "path": "models/final/indicpass-hin-v1",
+    "source_vocab_size": 30,
+    "target_vocab_size": 75,
+    "metadata": {
+      "model_name": "indicpass-hin-v1",
+      "created_at": "2026-09-02T06:43:42+00:00",
+      "languages": [
+        "hin"
+      ],
+      "direction": "roman_to_native",
+      "max_input_length": 64,
+      "max_output_length": 64,
+      "git_commit": "551cd9f1e71eed5bd946e3a731c00b75e6cc3846",
+      "dataset": {
+        "source": "aksharantar",
+        "revision": "e418c1fc928d9f5393af33268472cf20c1891be8",
+        "train_records": 1299143
+      },
+      "metrics": {
+        "best_cer": 0.10482093997433352
+      },
+      "framework": {
+        "torch": "2.14.0+cpu",
+        "safetensors": "0.8.0"
+      }
+    }
+  },
+  "dataset": {
+    "identifier": "aksharantar/hin",
+    "file": "data/processed/aksharantar/hin/test.jsonl",
+    "source": "aksharantar",
+    "tokenizer_metadata": {
+      "fitted_on_pairs": 1299143,
+      "min_frequency": 1,
+      "language": "hin",
+      "dataset_source": "aksharantar",
+      "fitted_on": "train",
+      "train_file": "data/processed/aksharantar/hin/train.jsonl"
+    }
+  },
+  "environment": {
+    "python": "3.14.3",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "samples": [
+    {
+      "source_text": "maitrologist",
+      "target_text": "मैट्रोलॉजिस्ट",
+      "prediction": "मैट्रोलॉजिस्ट",
+      "exact": true
+    },
+    {
+      "source_text": "phwcs",
+      "target_text": "पीएचडब्ल्यूसीएस",
+      "prediction": "फ्व्स्",
+      "exact": false
+    },
+    {
+      "source_text": "pratidwandiyon",
+      "target_text": "प्रतिद्वन्दियों",
+      "prediction": "प्रतिद्वंद्वियों",
+      "exact": false
+    },
+    {
+      "source_text": "pratiyukti",
+      "target_text": "प्रतियुक्ति",
+      "prediction": "प्रतियुक्ति",
+      "exact": true
+    },
+    {
+      "source_text": "eksisatens",
+      "target_text": "एक्सिसटेंस",
+      "prediction": "एक्सीसेटेंस",
+      "exact": false
+    },
+    {
+      "source_text": "filmnirmata",
+      "target_text": "फ़िल्मनिर्माता",
+      "prediction": "फिल्मनिर्माता",
+      "exact": false
+    },
+    {
+      "source_text": "adrgh",
+      "target_text": "अद्र्घ",
+      "prediction": "एडीआरएफ",
+      "exact": false
+    },
+    {
+      "source_text": "ladhege",
+      "target_text": "लड़ेगे",
+      "prediction": "लढेगे",
+      "exact": false
+    },
+    {
+      "source_text": "administresh",
+      "target_text": "एडमिनिस्ट्रेश",
+      "prediction": "एडमिनिस्ट्रेश",
+      "exact": true
+    },
+    {
+      "source_text": "shiwalapurwa",
+      "target_text": "शिवालापुरवा",
+      "prediction": "शिवालापुरवा",
+      "exact": true
+    }
+  ]
+}

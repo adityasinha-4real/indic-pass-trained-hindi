@@ -1,0 +1,1903 @@
+{
+  "generated_at": "2026-09-07T14:02:37+00:00",
+  "project": "IndicPass v0.1.0",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "milestone": 3,
+  "corpus": {
+    "seed": 42,
+    "generator_version": "1.0",
+    "total_samples": 1400,
+    "categories": {
+      "english": {
+        "samples": 200,
+        "mean_length": 8.26,
+        "min_length": 5,
+        "max_length": 12
+      },
+      "indic_word": {
+        "samples": 200,
+        "mean_length": 5.21,
+        "min_length": 3,
+        "max_length": 12
+      },
+      "indic_numeric": {
+        "samples": 200,
+        "mean_length": 8.77,
+        "min_length": 6,
+        "max_length": 14
+      },
+      "indic_year": {
+        "samples": 200,
+        "mean_length": 9.32,
+        "min_length": 7,
+        "max_length": 14
+      },
+      "indic_symbol": {
+        "samples": 200,
+        "mean_length": 7.91,
+        "min_length": 4,
+        "max_length": 16
+      },
+      "mixed": {
+        "samples": 200,
+        "mean_length": 13.75,
+        "min_length": 7,
+        "max_length": 22
+      },
+      "random": {
+        "samples": 200,
+        "mean_length": 11.02,
+        "min_length": 8,
+        "max_length": 14
+      }
+    },
+    "word_banks": {
+      "indic": 163,
+      "english": 76
+    },
+    "note": "Passwords are generated, never stored. Rows are keyed by sample_id; regenerating from the same seed reproduces the corpus exactly."
+  },
+  "baseline": {
+    "name": "zxcvbn",
+    "version": "4.5.0"
+  },
+  "dictionaries": [
+    {
+      "language": "hin",
+      "entries": 297747,
+      "tiers": [
+        {
+          "name": "human_romanized",
+          "index": 0,
+          "size": 30400,
+          "ranked_size": 13437,
+          "unranked_size": 16963,
+          "offset": 40966
+        },
+        {
+          "name": "curated_entities",
+          "index": 1,
+          "size": 25005,
+          "ranked_size": 1747,
+          "unranked_size": 23258,
+          "offset": 57929
+        },
+        {
+          "name": "curated_other",
+          "index": 2,
+          "size": 122342,
+          "ranked_size": 23612,
+          "unranked_size": 98730,
+          "offset": 81187
+        },
+        {
+          "name": "mined",
+          "index": 3,
+          "size": 120000,
+          "ranked_size": 2170,
+          "unranked_size": 117830,
+          "offset": 179917
+        }
+      ],
+      "frequency_available": true,
+      "ranked_entries": 40966,
+      "frequency_coverage": 0.137587,
+      "frequency_source": {
+        "identifier": "wordfreq-3.1.1/hi/small",
+        "provider": "wordfreq",
+        "version": "3.1.1",
+        "language": "hi",
+        "wordlist": "small",
+        "semantics": "Zipf frequency: log10(occurrences per billion tokens) of the NATIVE-SCRIPT word in a general text corpus. A corpus word frequency -- not a password frequency and not a model score.",
+        "entries": 26653,
+        "license": "Apache-2.0 (package); aggregated corpora under their own terms",
+        "corpora": [
+          "Wikipedia",
+          "OSCAR web text",
+          "Twitter",
+          "Reddit"
+        ],
+        "notes": "wordfreq 3.x is a frozen dataset: its author stopped updating it in 2024, which makes it reproducible but means it reflects pre-2022 text. Only a 'small' list ships for Hindi (~27k words)."
+      },
+      "built_at": "2026-09-07T10:51:55+00:00",
+      "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b"
+    }
+  ],
+  "pcfg": {
+    "name": "pcfg",
+    "version": "1.0",
+    "grammar": {
+      "categories": [
+        "word",
+        "unknown",
+        "digits",
+        "year",
+        "symbols"
+      ],
+      "settings": {
+        "ngram_order": 4,
+        "ngram_tiers": [],
+        "segment_continuation": 0.5,
+        "max_segments": 8,
+        "category_prior": {},
+        "digit_length_decay": 0.5,
+        "symbol_length_decay": 0.35,
+        "max_run_length": 16,
+        "digits_per_position": 10,
+        "symbol_alphabet_size": 33,
+        "year_range": [
+          1900,
+          2035
+        ],
+        "unranked_policy": "tier_coverage"
+      },
+      "word_distribution": {
+        "policy": "tier_coverage",
+        "observed_entries": 40966,
+        "unobserved_entries": 256781,
+        "observed_mass": 1.1103908030242502,
+        "unobserved_mass": 0.031017174931254228,
+        "log10_normaliser": 0.057441,
+        "log10_min_observed": -5.99,
+        "tier_weights": {
+          "human_romanized": 0.442025,
+          "curated_entities": 0.069903,
+          "curated_other": 0.193007,
+          "mined": 0.018092
+        },
+        "note": "Unobserved entries are bounded by the smallest OBSERVED probability and scaled by their tier's measured frequency coverage. No frequency is invented for them, and frequency stays null on the entry itself."
+      },
+      "ngram": {
+        "order": 4,
+        "contexts": 14353,
+        "training_words": 297747,
+        "training_characters": 2359797,
+        "alphabet": 27,
+        "smoothing": "witten-bell (interpolated, no free parameter)"
+      },
+      "structure_prior": {
+        "form": "truncated geometric over segment count, renormalised",
+        "log10_probability": [
+          -0.29933,
+          -0.60036,
+          -0.90139,
+          -1.20242,
+          -1.50345,
+          -1.80448,
+          -2.10551,
+          -2.40654
+        ],
+        "status": "assumption -- no password corpus exists in this repository"
+      },
+      "category_prior": {
+        "word": -0.69897,
+        "unknown": -0.69897,
+        "digits": -0.69897,
+        "year": -0.69897,
+        "symbols": -0.69897
+      }
+    },
+    "estimator": {
+      "samples": 200000,
+      "sample_seed": 42,
+      "curve_points": 2000,
+      "bruteforce_floor": true,
+      "bruteforce_cardinality": 10
+    },
+    "curve": {
+      "samples": 200000,
+      "seed": 42,
+      "points": 1328,
+      "tail_slope": 0.958141
+    }
+  },
+  "dictionary_fingerprint": "sha256:9e17fb7da40a0622128def84d06dbf4bdf73ad374ddc526deacb5429065e2cec",
+  "question": "What does the grammar actually derive, one case at a time, and does it invent lexical structure in random strings?",
+  "cases": [
+    {
+      "case_id": "single-01",
+      "family": "single_indic_word",
+      "length": 6,
+      "note": "A common Hindi word, present in the dictionary with a measured rank.",
+      "pcfg": {
+        "log10_guesses": 2.73,
+        "score": 0,
+        "log10_probability": -4.4599,
+        "grammar_log10_guesses": 2.73,
+        "bruteforce_log10_guesses": 6.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 1.6232,
+        "score": 0,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 4.0565,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 2.73
+    },
+    {
+      "case_id": "single-02",
+      "family": "single_indic_word",
+      "length": 7,
+      "note": "A named entity, present, priced by measured rank.",
+      "pcfg": {
+        "log10_guesses": 4.9347,
+        "score": 1,
+        "log10_probability": -6.3399,
+        "grammar_log10_guesses": 4.9347,
+        "bruteforce_log10_guesses": 7.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 7,
+            "log10_probability": -6.0405,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 3026
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 3.481,
+        "score": 1,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 3.2375,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 3.2375
+    },
+    {
+      "case_id": "single-03",
+      "family": "single_indic_word",
+      "length": 7,
+      "note": "Absent from the corpus. Only the character model can explain it.",
+      "pcfg": {
+        "log10_guesses": 7.0,
+        "score": 2,
+        "log10_probability": -9.8936,
+        "grammar_log10_guesses": 8.2042,
+        "bruteforce_log10_guesses": 7.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 7,
+            "log10_probability": -9.5942,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 7.0,
+        "score": 2,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 3.5851,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 3.5851
+    },
+    {
+      "case_id": "single-04",
+      "family": "single_indic_word",
+      "length": 6,
+      "note": "A very common surname, absent from the corpus. The coverage ceiling.",
+      "pcfg": {
+        "log10_guesses": 5.9738,
+        "score": 1,
+        "log10_probability": -7.5447,
+        "grammar_log10_guesses": 5.9738,
+        "bruteforce_log10_guesses": 6.0,
+        "floor_applied": false,
+        "structure": [
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 6,
+            "log10_probability": -7.2453,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.7193,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 3.7441,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 3.7441
+    },
+    {
+      "case_id": "year-01",
+      "family": "indic_word_year",
+      "length": 10,
+      "note": "The canonical structure: a dictionary word and a recent year.",
+      "pcfg": {
+        "log10_guesses": 6.0219,
+        "score": 2,
+        "log10_probability": -7.5934,
+        "grammar_log10_guesses": 6.0219,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "year"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "year",
+            "length": 4,
+            "log10_probability": -2.8325,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.3254,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "year"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.1386,
+        "score": 3,
+        "patterns": [
+          "dictionary",
+          "bruteforce",
+          "sequence"
+        ]
+      },
+      "combined_log10_guesses": 6.0219
+    },
+    {
+      "case_id": "year-02",
+      "family": "indic_word_year",
+      "length": 11,
+      "note": "A named entity and a birth year.",
+      "pcfg": {
+        "log10_guesses": 7.8157,
+        "score": 2,
+        "log10_probability": -9.4734,
+        "grammar_log10_guesses": 7.8157,
+        "bruteforce_log10_guesses": 11.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "year"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 7,
+            "log10_probability": -6.0405,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 3026
+          },
+          {
+            "category": "year",
+            "length": 4,
+            "log10_probability": -2.8325,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 5.9207,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "year"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 5.2617,
+        "score": 1,
+        "patterns": [
+          "dictionary",
+          "regex"
+        ]
+      },
+      "combined_log10_guesses": 5.2617
+    },
+    {
+      "case_id": "year-03",
+      "family": "indic_word_year",
+      "length": 11,
+      "note": "The same structure with the word absent from the dictionary.",
+      "pcfg": {
+        "log10_guesses": 11.0,
+        "score": 4,
+        "log10_probability": -13.0271,
+        "grammar_log10_guesses": 11.171,
+        "bruteforce_log10_guesses": 11.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown",
+          "year"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 7,
+            "log10_probability": -9.5942,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "year",
+            "length": 4,
+            "log10_probability": -2.8325,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 9.4346,
+        "score": 3,
+        "patterns": [
+          "bruteforce",
+          "year"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 6.1942,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "repeat"
+        ]
+      },
+      "combined_log10_guesses": 6.1942
+    },
+    {
+      "case_id": "digits-01",
+      "family": "indic_word_digits",
+      "length": 9,
+      "note": "A digit run that is not a year, so the year terminal must not fire.",
+      "pcfg": {
+        "log10_guesses": 7.7164,
+        "score": 2,
+        "log10_probability": -9.3629,
+        "grammar_log10_guesses": 7.7164,
+        "bruteforce_log10_guesses": 9.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "digits"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "digits",
+            "length": 3,
+            "log10_probability": -4.6021,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.9638,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "digits"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 6.0603,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "sequence"
+        ]
+      },
+      "combined_log10_guesses": 6.0603
+    },
+    {
+      "case_id": "digits-02",
+      "family": "indic_word_digits",
+      "length": 10,
+      "note": "A culturally common three-digit suffix. The grammar has no special case for it.",
+      "pcfg": {
+        "log10_guesses": 9.4499,
+        "score": 3,
+        "log10_probability": -11.243,
+        "grammar_log10_guesses": 9.4499,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "digits"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 7,
+            "log10_probability": -6.0405,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 3026
+          },
+          {
+            "category": "digits",
+            "length": 3,
+            "log10_probability": -4.6021,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 6.7826,
+        "score": 2,
+        "patterns": [
+          "indic_word",
+          "digits"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 6.5045,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "spatial"
+        ]
+      },
+      "combined_log10_guesses": 6.5045
+    },
+    {
+      "case_id": "digits-03",
+      "family": "indic_word_digits",
+      "length": 11,
+      "note": "A five-digit run: the length prior's cost should dominate the word's.",
+      "pcfg": {
+        "log10_guesses": 10.1439,
+        "score": 4,
+        "log10_probability": -11.965,
+        "grammar_log10_guesses": 10.1439,
+        "bruteforce_log10_guesses": 11.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "digits"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "digits",
+            "length": 5,
+            "log10_probability": -7.2041,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 6.9143,
+        "score": 2,
+        "patterns": [
+          "indic_word",
+          "digits"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 9.0556,
+        "score": 3,
+        "patterns": [
+          "dictionary",
+          "date"
+        ]
+      },
+      "combined_log10_guesses": 9.0556
+    },
+    {
+      "case_id": "multi-01",
+      "family": "multiple_indic_words",
+      "length": 10,
+      "note": "Two of the commonest words in Hindi, concatenated.",
+      "pcfg": {
+        "log10_guesses": 7.7493,
+        "score": 2,
+        "log10_probability": -9.4001,
+        "grammar_log10_guesses": 7.7493,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 4,
+            "log10_probability": -4.6392,
+            "observed_frequency": true,
+            "tier": "mined",
+            "rank": 213
+          },
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.4388,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.1386,
+        "score": 3,
+        "patterns": [
+          "bruteforce",
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 7.7493
+    },
+    {
+      "case_id": "multi-02",
+      "family": "multiple_indic_words",
+      "length": 10,
+      "note": "A set phrase, as two dictionary lookups.",
+      "pcfg": {
+        "log10_guesses": 6.3001,
+        "score": 2,
+        "log10_probability": -7.8799,
+        "grammar_log10_guesses": 6.3001,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 10,
+            "log10_probability": -7.5806,
+            "observed_frequency": true,
+            "tier": "curated_other",
+            "rank": 36349
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.5605,
+        "score": 1,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 7.3663,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 6.3001
+    },
+    {
+      "case_id": "multi-03",
+      "family": "multiple_indic_words",
+      "length": 15,
+      "note": "Three segments: the structure prior charges for the extra split.",
+      "pcfg": {
+        "log10_guesses": 12.5626,
+        "score": 4,
+        "log10_probability": -14.5126,
+        "grammar_log10_guesses": 12.5626,
+        "bruteforce_log10_guesses": 15.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "word",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 4,
+            "log10_probability": -4.6392,
+            "observed_frequency": true,
+            "tier": "mined",
+            "rank": 213
+          },
+          {
+            "category": "word",
+            "length": 5,
+            "log10_probability": -4.8115,
+            "observed_frequency": true,
+            "tier": "human_romanized",
+            "rank": 299
+          },
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.0632,
+        "score": 3,
+        "patterns": [
+          "indic_word",
+          "indic_word",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 12.6645,
+        "score": 4,
+        "patterns": [
+          "bruteforce",
+          "dictionary",
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 12.5626
+    },
+    {
+      "case_id": "mixed-01",
+      "family": "indic_and_english",
+      "length": 14,
+      "note": "An Indic word and the commonest English password word.",
+      "pcfg": {
+        "log10_guesses": 9.6183,
+        "score": 3,
+        "log10_probability": -11.3998,
+        "grammar_log10_guesses": 9.6183,
+        "bruteforce_log10_guesses": 14.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "word",
+            "length": 8,
+            "log10_probability": -6.6389,
+            "observed_frequency": true,
+            "tier": "human_romanized",
+            "rank": 9055
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 5.8765,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 6.0603,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 6.0603
+    },
+    {
+      "case_id": "mixed-02",
+      "family": "indic_and_english",
+      "length": 13,
+      "note": "The same pair in the other order.",
+      "pcfg": {
+        "log10_guesses": 13.0,
+        "score": 4,
+        "log10_probability": -16.9539,
+        "grammar_log10_guesses": 14.906,
+        "bruteforce_log10_guesses": 13.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 7,
+            "log10_probability": -12.193,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.9138,
+        "score": 3,
+        "patterns": [
+          "bruteforce",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 6.4084,
+        "score": 2,
+        "patterns": [
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 6.4084
+    },
+    {
+      "case_id": "mixed-03",
+      "family": "indic_and_english",
+      "length": 13,
+      "note": "A named entity and an English wordlist staple.",
+      "pcfg": {
+        "log10_guesses": 11.4936,
+        "score": 4,
+        "log10_probability": -13.3714,
+        "grammar_log10_guesses": 11.4936,
+        "bruteforce_log10_guesses": 13.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 7,
+            "log10_probability": -6.0405,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 3026
+          },
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -6.7305,
+            "observed_frequency": true,
+            "tier": "human_romanized",
+            "rank": 12677
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 7.885,
+        "score": 2,
+        "patterns": [
+          "indic_word",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 5.2617,
+        "score": 1,
+        "patterns": [
+          "dictionary",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 5.2617
+    },
+    {
+      "case_id": "symbol-01",
+      "family": "indic_and_symbols",
+      "length": 11,
+      "note": "Word, symbol, year: three segments, the shape a password policy produces.",
+      "pcfg": {
+        "log10_guesses": 8.566,
+        "score": 3,
+        "log10_probability": -10.299,
+        "grammar_log10_guesses": 8.566,
+        "bruteforce_log10_guesses": 11.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "symbols",
+          "year"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "symbols",
+            "length": 1,
+            "log10_probability": -2.4046,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "year",
+            "length": 4,
+            "log10_probability": -2.8325,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 6.9143,
+        "score": 2,
+        "patterns": [
+          "indic_word",
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.485,
+        "score": 3,
+        "patterns": [
+          "dictionary",
+          "bruteforce",
+          "sequence"
+        ]
+      },
+      "combined_log10_guesses": 8.485
+    },
+    {
+      "case_id": "symbol-02",
+      "family": "indic_and_symbols",
+      "length": 8,
+      "note": "A single trailing symbol, the cheapest possible symbol run.",
+      "pcfg": {
+        "log10_guesses": 7.4335,
+        "score": 2,
+        "log10_probability": -9.0455,
+        "grammar_log10_guesses": 7.4335,
+        "bruteforce_log10_guesses": 8.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "symbols"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 7,
+            "log10_probability": -6.0405,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 3026
+          },
+          {
+            "category": "symbols",
+            "length": 1,
+            "log10_probability": -2.4046,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.8483,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 4.6812,
+        "score": 1,
+        "patterns": [
+          "dictionary",
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 4.6812
+    },
+    {
+      "case_id": "symbol-03",
+      "family": "indic_and_symbols",
+      "length": 13,
+      "note": "A three-character symbol run between two words.",
+      "pcfg": {
+        "log10_guesses": 13.0,
+        "score": 4,
+        "log10_probability": -16.0546,
+        "grammar_log10_guesses": 14.0517,
+        "bruteforce_log10_guesses": 13.0,
+        "floor_applied": true,
+        "structure": [
+          "word",
+          "symbols",
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 4,
+            "log10_probability": -4.6392,
+            "observed_frequency": true,
+            "tier": "mined",
+            "rank": 213
+          },
+          {
+            "category": "symbols",
+            "length": 3,
+            "log10_probability": -6.3535,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.1605,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.183,
+        "score": 3,
+        "patterns": [
+          "indic_word",
+          "bruteforce",
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 10.7275,
+        "score": 4,
+        "patterns": [
+          "bruteforce",
+          "sequence",
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 10.7275
+    },
+    {
+      "case_id": "case-01",
+      "family": "case_variation",
+      "length": 6,
+      "note": "Capitalised. Must cost about twice the lower-case form, not orders more.",
+      "pcfg": {
+        "log10_guesses": 3.2982,
+        "score": 1,
+        "log10_probability": -4.7609,
+        "grammar_log10_guesses": 3.2982,
+        "bruteforce_log10_guesses": 6.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.4616,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 1.9191,
+        "score": 0,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 4.3575,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 3.2982
+    },
+    {
+      "case_id": "case-02",
+      "family": "case_variation",
+      "length": 6,
+      "note": "All upper case: the same two variations as capitalised.",
+      "pcfg": {
+        "log10_guesses": 3.2982,
+        "score": 1,
+        "log10_probability": -4.7609,
+        "grammar_log10_guesses": 3.2982,
+        "bruteforce_log10_guesses": 6.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.4616,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 1.9191,
+        "score": 0,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 4.3575,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 3.2982
+    },
+    {
+      "case_id": "case-03",
+      "family": "case_variation",
+      "length": 6,
+      "note": "Genuinely mixed case, where the variation count really does grow.",
+      "pcfg": {
+        "log10_guesses": 4.5452,
+        "score": 1,
+        "log10_probability": -6.0726,
+        "grammar_log10_guesses": 4.5452,
+        "bruteforce_log10_guesses": 6.0,
+        "floor_applied": false,
+        "structure": [
+          "word"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -5.7733,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 3.2258,
+        "score": 1,
+        "patterns": [
+          "indic_word"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 5.6693,
+        "score": 1,
+        "patterns": [
+          "dictionary"
+        ]
+      },
+      "combined_log10_guesses": 4.5452
+    },
+    {
+      "case_id": "case-04",
+      "family": "case_variation",
+      "length": 10,
+      "note": "Case variation inside a multi-segment structure.",
+      "pcfg": {
+        "log10_guesses": 6.3091,
+        "score": 2,
+        "log10_probability": -7.8944,
+        "grammar_log10_guesses": 6.3091,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": false,
+        "structure": [
+          "word",
+          "year"
+        ],
+        "segments": [
+          {
+            "category": "word",
+            "length": 6,
+            "log10_probability": -4.4616,
+            "observed_frequency": true,
+            "tier": "curated_entities",
+            "rank": 41
+          },
+          {
+            "category": "year",
+            "length": 4,
+            "log10_probability": -2.8325,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 4.5093,
+        "score": 1,
+        "patterns": [
+          "indic_word",
+          "year"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.2435,
+        "score": 3,
+        "patterns": [
+          "dictionary",
+          "bruteforce",
+          "sequence"
+        ]
+      },
+      "combined_log10_guesses": 6.3091
+    },
+    {
+      "case_id": "unseen-01",
+      "family": "unseen_token",
+      "length": 8,
+      "note": "Hindi-shaped and absent: the case the character model exists for.",
+      "pcfg": {
+        "log10_guesses": 7.3949,
+        "score": 2,
+        "log10_probability": -9.0031,
+        "grammar_log10_guesses": 7.3949,
+        "bruteforce_log10_guesses": 8.0,
+        "floor_applied": false,
+        "structure": [
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 8,
+            "log10_probability": -8.7037,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.0,
+        "score": 3,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.0,
+        "score": 2,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 7.3949
+    },
+    {
+      "case_id": "unseen-02",
+      "family": "unseen_token",
+      "length": 10,
+      "note": "Two Hindi-shaped pieces, at least one unseen.",
+      "pcfg": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "log10_probability": -12.2501,
+        "grammar_log10_guesses": 10.4192,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 10,
+            "log10_probability": -11.9507,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.6395,
+        "score": 3,
+        "patterns": [
+          "bruteforce",
+          "indic_word",
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 10.0,
+        "score": 3,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 10.0
+    },
+    {
+      "case_id": "unseen-03",
+      "family": "unseen_token",
+      "length": 8,
+      "note": "Roman letters with no Hindi shape at all. Must NOT look like a word.",
+      "pcfg": {
+        "log10_guesses": 8.0,
+        "score": 3,
+        "log10_probability": -26.8304,
+        "grammar_log10_guesses": 24.3516,
+        "bruteforce_log10_guesses": 8.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown",
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 4,
+            "log10_probability": -16.289,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "unknown",
+            "length": 4,
+            "log10_probability": -9.941,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 8.0,
+        "score": 3,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 8.0,
+        "score": 2,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 8.0
+    },
+    {
+      "case_id": "unseen-04",
+      "family": "unseen_token",
+      "length": 10,
+      "note": "An unseen word with digits -- the Milestone 1 fragment pathology's home.",
+      "pcfg": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "log10_probability": -14.7966,
+        "grammar_log10_guesses": 12.8369,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown",
+          "digits"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 7,
+            "log10_probability": -9.5942,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "digits",
+            "length": 3,
+            "log10_probability": -4.6021,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 5.5962,
+        "score": 1,
+        "patterns": [
+          "dictionary",
+          "sequence"
+        ]
+      },
+      "combined_log10_guesses": 5.5962
+    },
+    {
+      "case_id": "random-01",
+      "family": "random_string",
+      "length": 10,
+      "note": "Ten lower-case letters, no structure. The control the model must not flatter.",
+      "pcfg": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "log10_probability": -39.3237,
+        "grammar_log10_guesses": 36.2459,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": true,
+        "structure": [
+          "unknown",
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "unknown",
+            "length": 3,
+            "log10_probability": -18.2681,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "unknown",
+            "length": 7,
+            "log10_probability": -20.4552,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 9.9759,
+        "score": 3,
+        "patterns": [
+          "bruteforce",
+          "sequence",
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 9.9759
+    },
+    {
+      "case_id": "random-02",
+      "family": "random_string",
+      "length": 10,
+      "note": "Mixed alphanumeric, ten characters.",
+      "pcfg": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "log10_probability": -38.6101,
+        "grammar_log10_guesses": 35.5699,
+        "bruteforce_log10_guesses": 10.0,
+        "floor_applied": true,
+        "structure": [
+          "digits",
+          "unknown",
+          "digits",
+          "unknown",
+          "digits",
+          "unknown"
+        ],
+        "segments": [
+          {
+            "category": "digits",
+            "length": 1,
+            "log10_probability": -2.0,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "unknown",
+            "length": 2,
+            "log10_probability": -13.4044,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "digits",
+            "length": 1,
+            "log10_probability": -2.0,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "unknown",
+            "length": 2,
+            "log10_probability": -10.0798,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "digits",
+            "length": 1,
+            "log10_probability": -2.0,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          },
+          {
+            "category": "unknown",
+            "length": 3,
+            "log10_probability": -7.3214,
+            "observed_frequency": null,
+            "tier": null,
+            "rank": null
+          }
+        ]
+      },
+      "indicpass": {
+        "log10_guesses": 10.0,
+        "score": 4,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 10.0,
+        "score": 3,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 10.0
+    },
+    {
+      "case_id": "random-03",
+      "family": "random_string",
+      "length": 12,
+      "note": "Full charset, twelve characters.",
+      "pcfg": {
+        "log10_guesses": 12.0,
+        "score": 4,
+        "log10_probability": -Infinity,
+        "grammar_log10_guesses": Infinity,
+        "bruteforce_log10_guesses": 12.0,
+        "floor_applied": true,
+        "structure": [],
+        "segments": []
+      },
+      "indicpass": {
+        "log10_guesses": 12.0,
+        "score": 4,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "zxcvbn": {
+        "log10_guesses": 12.0,
+        "score": 4,
+        "patterns": [
+          "bruteforce"
+        ]
+      },
+      "combined_log10_guesses": 12.0
+    }
+  ],
+  "families": [
+    "case_variation",
+    "indic_and_english",
+    "indic_and_symbols",
+    "indic_word_digits",
+    "indic_word_year",
+    "multiple_indic_words",
+    "random_string",
+    "single_indic_word",
+    "unseen_token"
+  ],
+  "random_control": {
+    "seed": 42,
+    "samples_per_cell": 300,
+    "rows": [
+      {
+        "alphabet": "lower",
+        "length": 6,
+        "samples": 300,
+        "word_rate": 0.02,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 7.8484,
+        "mean_vs_baseline": 0.0452
+      },
+      {
+        "alphabet": "lower",
+        "length": 8,
+        "samples": 300,
+        "word_rate": 0.01,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 10.3271,
+        "mean_vs_baseline": 0.0387
+      },
+      {
+        "alphabet": "lower",
+        "length": 10,
+        "samples": 300,
+        "word_rate": 0.0267,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 13.0914,
+        "mean_vs_baseline": 0.073
+      },
+      {
+        "alphabet": "lower",
+        "length": 12,
+        "samples": 300,
+        "word_rate": 0.02,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 15.7886,
+        "mean_vs_baseline": 0.0917
+      },
+      {
+        "alphabet": "lower",
+        "length": 14,
+        "samples": 300,
+        "word_rate": 0.0433,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 18.3444,
+        "mean_vs_baseline": 0.1244
+      },
+      {
+        "alphabet": "alnum",
+        "length": 6,
+        "samples": 300,
+        "word_rate": 0.0033,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 10.5362,
+        "mean_vs_baseline": 0.0154
+      },
+      {
+        "alphabet": "alnum",
+        "length": 8,
+        "samples": 300,
+        "word_rate": 0.0133,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 14.3818,
+        "mean_vs_baseline": 0.0152
+      },
+      {
+        "alphabet": "alnum",
+        "length": 10,
+        "samples": 300,
+        "word_rate": 0.0267,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 17.3401,
+        "mean_vs_baseline": 0.0328
+      },
+      {
+        "alphabet": "alnum",
+        "length": 12,
+        "samples": 300,
+        "word_rate": 0.0133,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": Infinity,
+        "mean_vs_baseline": 0.0358
+      },
+      {
+        "alphabet": "alnum",
+        "length": 14,
+        "samples": 300,
+        "word_rate": 0.0233,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": Infinity,
+        "mean_vs_baseline": 0.0286
+      },
+      {
+        "alphabet": "full",
+        "length": 6,
+        "samples": 300,
+        "word_rate": 0.0033,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 12.8895,
+        "mean_vs_baseline": 0.017
+      },
+      {
+        "alphabet": "full",
+        "length": 8,
+        "samples": 300,
+        "word_rate": 0.0167,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": 16.602,
+        "mean_vs_baseline": 0.0113
+      },
+      {
+        "alphabet": "full",
+        "length": 10,
+        "samples": 300,
+        "word_rate": 0.0033,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": Infinity,
+        "mean_vs_baseline": 0.0114
+      },
+      {
+        "alphabet": "full",
+        "length": 12,
+        "samples": 300,
+        "word_rate": 0.0133,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": Infinity,
+        "mean_vs_baseline": 0.0271
+      },
+      {
+        "alphabet": "full",
+        "length": 14,
+        "samples": 300,
+        "word_rate": 0.0167,
+        "below_bruteforce_rate": 0.0,
+        "mean_grammar_minus_bruteforce": Infinity,
+        "mean_vs_baseline": 0.0184
+      }
+    ],
+    "worst_word_rate": 0.0433,
+    "worst_below_bruteforce_rate": 0.0,
+    "note": "word_rate is how often the winning derivation contains a dictionary segment; below_bruteforce_rate is how often the grammar alone priced a random string below enumerating it. The second is the one that could change an estimate. A model that read random strings as cheaper than brute force would be inventing structure, and every Indic result would have to be read as the same artefact."
+  },
+  "redaction_note": "Rows are keyed on case_id. The probe passwords are committed source in src/indicpass/password/pcfg/probe.py, where the whole instrument can be read at once; what is forbidden -- and what this report does not do -- is publish a table pairing an identifier with a password."
+}

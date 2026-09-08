@@ -1,0 +1,125 @@
+{
+  "language": "hin",
+  "entries": 297747,
+  "tiers": [
+    {
+      "name": "human_romanized",
+      "index": 0,
+      "size": 30400,
+      "ranked_size": 13437,
+      "unranked_size": 16963,
+      "offset": 40966
+    },
+    {
+      "name": "curated_entities",
+      "index": 1,
+      "size": 25005,
+      "ranked_size": 1747,
+      "unranked_size": 23258,
+      "offset": 57929
+    },
+    {
+      "name": "curated_other",
+      "index": 2,
+      "size": 122342,
+      "ranked_size": 23612,
+      "unranked_size": 98730,
+      "offset": 81187
+    },
+    {
+      "name": "mined",
+      "index": 3,
+      "size": 120000,
+      "ranked_size": 2170,
+      "unranked_size": 117830,
+      "offset": 179917
+    }
+  ],
+  "frequency_available": true,
+  "ranked_entries": 40966,
+  "frequency_coverage": 0.137587,
+  "frequency_source": {
+    "identifier": "wordfreq-3.1.1/hi/small",
+    "provider": "wordfreq",
+    "version": "3.1.1",
+    "language": "hi",
+    "wordlist": "small",
+    "semantics": "Zipf frequency: log10(occurrences per billion tokens) of the NATIVE-SCRIPT word in a general text corpus. A corpus word frequency -- not a password frequency and not a model score.",
+    "entries": 26653,
+    "license": "Apache-2.0 (package); aggregated corpora under their own terms",
+    "corpora": [
+      "Wikipedia",
+      "OSCAR web text",
+      "Twitter",
+      "Reddit"
+    ],
+    "notes": "wordfreq 3.x is a frozen dataset: its author stopped updating it in 2024, which makes it reproducible but means it reflects pre-2022 text. Only a 'small' list ships for Hindi (~27k words)."
+  },
+  "frequency_note": "Frequency is a corpus word frequency of the NATIVE form, taken from an external table; Aksharantar itself supplies none. Entries with no observed frequency keep frequency: null and rank: null and are priced by the documented tier fallback -- no value is substituted for them.",
+  "built_at": "2026-09-07T10:51:55+00:00",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "dataset": {
+    "source": "aksharantar",
+    "splits": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "files": [
+      "data/processed/aksharantar/hin/train.jsonl",
+      "data/processed/aksharantar/hin/validation.jsonl",
+      "data/processed/aksharantar/hin/test.jsonl"
+    ]
+  },
+  "model": {
+    "used": true,
+    "identifier": "indicpass-hin-v1",
+    "kind": "bundle",
+    "path": "models/final/indicpass-hin-v1",
+    "seconds": 2286.3,
+    "metadata": {
+      "model_name": "indicpass-hin-v1",
+      "created_at": "2026-09-02T06:43:42+00:00",
+      "languages": [
+        "hin"
+      ],
+      "direction": "roman_to_native",
+      "max_input_length": 64,
+      "max_output_length": 64,
+      "git_commit": "551cd9f1e71eed5bd946e3a731c00b75e6cc3846",
+      "dataset": {
+        "source": "aksharantar",
+        "revision": "e418c1fc928d9f5393af33268472cf20c1891be8",
+        "train_records": 1299143
+      },
+      "metrics": {
+        "best_cer": 0.10482093997433352
+      },
+      "framework": {
+        "torch": "2.14.0+cpu",
+        "safetensors": "0.8.0"
+      }
+    }
+  },
+  "filters": {
+    "min_token_length": 3,
+    "max_token_length": 16,
+    "charset": "ascii lowercase letters only",
+    "max_entries_per_tier": {
+      "human_romanized": null,
+      "curated_entities": null,
+      "curated_other": null,
+      "mined": 120000
+    }
+  },
+  "rejected": {
+    "empty_prediction": 0,
+    "wrong_script": 0
+  },
+  "model_verified_entries": 211752,
+  "model_verified_ratio": 0.711181,
+  "frequency_matched_via": {
+    "native_form": 26647,
+    "attested_form": 14319
+  }
+}

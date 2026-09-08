@@ -1,0 +1,1153 @@
+{
+  "generated_at": "2026-09-07T10:53:43+00:00",
+  "project": "IndicPass v0.1.0",
+  "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b",
+  "corpus": {
+    "seed": 42,
+    "generator_version": "1.0",
+    "total_samples": 1400,
+    "categories": {
+      "english": {
+        "samples": 200,
+        "mean_length": 8.26,
+        "min_length": 5,
+        "max_length": 12
+      },
+      "indic_word": {
+        "samples": 200,
+        "mean_length": 5.21,
+        "min_length": 3,
+        "max_length": 12
+      },
+      "indic_numeric": {
+        "samples": 200,
+        "mean_length": 8.77,
+        "min_length": 6,
+        "max_length": 14
+      },
+      "indic_year": {
+        "samples": 200,
+        "mean_length": 9.32,
+        "min_length": 7,
+        "max_length": 14
+      },
+      "indic_symbol": {
+        "samples": 200,
+        "mean_length": 7.91,
+        "min_length": 4,
+        "max_length": 16
+      },
+      "mixed": {
+        "samples": 200,
+        "mean_length": 13.75,
+        "min_length": 7,
+        "max_length": 22
+      },
+      "random": {
+        "samples": 200,
+        "mean_length": 11.02,
+        "min_length": 8,
+        "max_length": 14
+      }
+    },
+    "word_banks": {
+      "indic": 163,
+      "english": 76
+    },
+    "note": "Passwords are generated, never stored. Rows are keyed by sample_id; regenerating from the same seed reproduces the corpus exactly."
+  },
+  "baseline": {
+    "name": "zxcvbn",
+    "version": "4.5.0"
+  },
+  "dictionaries": [
+    {
+      "language": "hin",
+      "entries": 297747,
+      "tiers": [
+        {
+          "name": "human_romanized",
+          "index": 0,
+          "size": 30400,
+          "ranked_size": 13437,
+          "unranked_size": 16963,
+          "offset": 40966
+        },
+        {
+          "name": "curated_entities",
+          "index": 1,
+          "size": 25005,
+          "ranked_size": 1747,
+          "unranked_size": 23258,
+          "offset": 57929
+        },
+        {
+          "name": "curated_other",
+          "index": 2,
+          "size": 122342,
+          "ranked_size": 23612,
+          "unranked_size": 98730,
+          "offset": 81187
+        },
+        {
+          "name": "mined",
+          "index": 3,
+          "size": 120000,
+          "ranked_size": 2170,
+          "unranked_size": 117830,
+          "offset": 179917
+        }
+      ],
+      "frequency_available": true,
+      "ranked_entries": 40966,
+      "frequency_coverage": 0.137587,
+      "frequency_source": {
+        "identifier": "wordfreq-3.1.1/hi/small",
+        "provider": "wordfreq",
+        "version": "3.1.1",
+        "language": "hi",
+        "wordlist": "small",
+        "semantics": "Zipf frequency: log10(occurrences per billion tokens) of the NATIVE-SCRIPT word in a general text corpus. A corpus word frequency -- not a password frequency and not a model score.",
+        "entries": 26653,
+        "license": "Apache-2.0 (package); aggregated corpora under their own terms",
+        "corpora": [
+          "Wikipedia",
+          "OSCAR web text",
+          "Twitter",
+          "Reddit"
+        ],
+        "notes": "wordfreq 3.x is a frozen dataset: its author stopped updating it in 2024, which makes it reproducible but means it reflects pre-2022 text. Only a 'small' list ships for Hindi (~27k words)."
+      },
+      "built_at": "2026-09-07T10:51:55+00:00",
+      "git_commit": "8a09173ef35109e4d0310c7a8b118a9afb021f5b"
+    }
+  ],
+  "question": "Is the mined tier -- the largest and least precise source -- carrying the result, or is it adding noise?",
+  "arms": [
+    {
+      "name": "indicpass",
+      "description": "The shipped configuration. Every other arm is this with one thing changed."
+    },
+    {
+      "name": "no_mined_tier",
+      "description": "Ablation D: the mined tier dropped. It is the largest and least precise source, and a result that rests on it is a result about corpus noise."
+    },
+    {
+      "name": "no_dictionary",
+      "description": "Ablation B: the same meter with an empty dictionary. Isolates what the Indic lexicon contributes from what generic pattern scoring does."
+    }
+  ],
+  "all_tiers": [
+    {
+      "category": "english",
+      "samples": 200,
+      "mean_log10_guesses": 7.0789,
+      "median_log10_guesses": 7.417,
+      "mean_score": 2.21,
+      "median_score": 2.0,
+      "match_rate": 0.605,
+      "ranked_match_rate": 0.405,
+      "score_distribution": {
+        "1": 55,
+        "2": 70,
+        "3": 53,
+        "4": 22
+      }
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "mean_log10_guesses": 4.3535,
+      "median_log10_guesses": 4.0,
+      "mean_score": 1.085,
+      "median_score": 1.0,
+      "match_rate": 0.435,
+      "ranked_match_rate": 0.385,
+      "score_distribution": {
+        "0": 13,
+        "1": 160,
+        "2": 24,
+        "3": 3
+      }
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "mean_log10_guesses": 7.8743,
+      "median_log10_guesses": 8.0,
+      "mean_score": 2.55,
+      "median_score": 3.0,
+      "match_rate": 0.455,
+      "ranked_match_rate": 0.42,
+      "score_distribution": {
+        "1": 10,
+        "2": 89,
+        "3": 82,
+        "4": 19
+      }
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "mean_log10_guesses": 6.8472,
+      "median_log10_guesses": 6.4362,
+      "mean_score": 1.96,
+      "median_score": 2.0,
+      "match_rate": 0.475,
+      "ranked_match_rate": 0.44,
+      "score_distribution": {
+        "1": 51,
+        "2": 112,
+        "3": 31,
+        "4": 6
+      }
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "mean_log10_guesses": 6.9801,
+      "median_log10_guesses": 7.0,
+      "mean_score": 2.115,
+      "median_score": 2.0,
+      "match_rate": 0.455,
+      "ranked_match_rate": 0.415,
+      "score_distribution": {
+        "1": 62,
+        "2": 67,
+        "3": 57,
+        "4": 14
+      }
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "mean_log10_guesses": 11.9235,
+      "median_log10_guesses": 12.1649,
+      "mean_score": 3.71,
+      "median_score": 4.0,
+      "match_rate": 0.775,
+      "ranked_match_rate": 0.675,
+      "score_distribution": {
+        "2": 10,
+        "3": 38,
+        "4": 152
+      }
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "mean_log10_guesses": 11.0115,
+      "median_log10_guesses": 11.0,
+      "mean_score": 3.74,
+      "median_score": 4.0,
+      "match_rate": 0.01,
+      "ranked_match_rate": 0.01,
+      "score_distribution": {
+        "3": 52,
+        "4": 148
+      }
+    }
+  ],
+  "without_mined": [
+    {
+      "category": "english",
+      "samples": 200,
+      "mean_log10_guesses": 7.0908,
+      "median_log10_guesses": 7.4097,
+      "mean_score": 2.215,
+      "median_score": 2.0,
+      "match_rate": 0.595,
+      "ranked_match_rate": 0.375,
+      "score_distribution": {
+        "1": 54,
+        "2": 71,
+        "3": 53,
+        "4": 22
+      }
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "mean_log10_guesses": 4.3581,
+      "median_log10_guesses": 4.0,
+      "mean_score": 1.085,
+      "median_score": 1.0,
+      "match_rate": 0.42,
+      "ranked_match_rate": 0.385,
+      "score_distribution": {
+        "0": 14,
+        "1": 160,
+        "2": 21,
+        "3": 5
+      }
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "mean_log10_guesses": 7.9042,
+      "median_log10_guesses": 8.0,
+      "mean_score": 2.575,
+      "median_score": 3.0,
+      "match_rate": 0.44,
+      "ranked_match_rate": 0.41,
+      "score_distribution": {
+        "1": 7,
+        "2": 90,
+        "3": 84,
+        "4": 19
+      }
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "mean_log10_guesses": 6.8907,
+      "median_log10_guesses": 6.4362,
+      "mean_score": 1.98,
+      "median_score": 2.0,
+      "match_rate": 0.425,
+      "ranked_match_rate": 0.405,
+      "score_distribution": {
+        "1": 47,
+        "2": 116,
+        "3": 31,
+        "4": 6
+      }
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "mean_log10_guesses": 7.0151,
+      "median_log10_guesses": 7.0,
+      "mean_score": 2.14,
+      "median_score": 2.0,
+      "match_rate": 0.42,
+      "ranked_match_rate": 0.395,
+      "score_distribution": {
+        "1": 59,
+        "2": 68,
+        "3": 59,
+        "4": 14
+      }
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "mean_log10_guesses": 11.9624,
+      "median_log10_guesses": 12.1739,
+      "mean_score": 3.71,
+      "median_score": 4.0,
+      "match_rate": 0.74,
+      "ranked_match_rate": 0.655,
+      "score_distribution": {
+        "2": 9,
+        "3": 40,
+        "4": 151
+      }
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "mean_log10_guesses": 11.0109,
+      "median_log10_guesses": 11.0,
+      "mean_score": 3.74,
+      "median_score": 4.0,
+      "match_rate": 0.01,
+      "ranked_match_rate": 0.01,
+      "score_distribution": {
+        "3": 52,
+        "4": 148
+      }
+    }
+  ],
+  "without_dictionary": [
+    {
+      "category": "english",
+      "samples": 200,
+      "mean_log10_guesses": 8.255,
+      "median_log10_guesses": 8.0,
+      "mean_score": 2.89,
+      "median_score": 3.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "1": 3,
+        "2": 69,
+        "3": 75,
+        "4": 53
+      }
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "mean_log10_guesses": 5.21,
+      "median_log10_guesses": 5.0,
+      "mean_score": 1.435,
+      "median_score": 1.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "1": 128,
+        "2": 60,
+        "3": 9,
+        "4": 3
+      }
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "mean_log10_guesses": 8.6606,
+      "median_log10_guesses": 8.5966,
+      "mean_score": 3.01,
+      "median_score": 3.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "1": 1,
+        "2": 49,
+        "3": 97,
+        "4": 53
+      }
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "mean_log10_guesses": 7.7605,
+      "median_log10_guesses": 7.4347,
+      "mean_score": 2.43,
+      "median_score": 2.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "1": 6,
+        "2": 113,
+        "3": 70,
+        "4": 11
+      }
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "mean_log10_guesses": 7.91,
+      "median_log10_guesses": 8.0,
+      "mean_score": 2.63,
+      "median_score": 3.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "1": 23,
+        "2": 70,
+        "3": 65,
+        "4": 42
+      }
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "mean_log10_guesses": 13.7484,
+      "median_log10_guesses": 14.0,
+      "mean_score": 3.945,
+      "median_score": 4.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "2": 1,
+        "3": 9,
+        "4": 190
+      }
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "mean_log10_guesses": 11.015,
+      "median_log10_guesses": 11.0,
+      "mean_score": 3.745,
+      "median_score": 4.0,
+      "match_rate": 0.0,
+      "ranked_match_rate": 0.0,
+      "score_distribution": {
+        "3": 51,
+        "4": 149
+      }
+    }
+  ],
+  "comparison_all_tiers": [
+    {
+      "category": "english",
+      "samples": 200,
+      "indicpass": {
+        "category": "english",
+        "samples": 200,
+        "mean_log10_guesses": 7.0789,
+        "median_log10_guesses": 7.417,
+        "mean_score": 2.21,
+        "median_score": 2.0,
+        "match_rate": 0.605,
+        "ranked_match_rate": 0.405,
+        "score_distribution": {
+          "1": 55,
+          "2": 70,
+          "3": 53,
+          "4": 22
+        }
+      },
+      "baseline": {
+        "category": "english",
+        "samples": 200,
+        "mean_log10_guesses": 3.8848,
+        "median_log10_guesses": 4.113,
+        "mean_score": 0.745,
+        "median_score": 1.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "0": 81,
+          "1": 89,
+          "2": 30
+        }
+      },
+      "indicpass_lower": 0,
+      "indicpass_higher": 200,
+      "equal": 0,
+      "mean_log10_difference": 3.1942,
+      "median_log10_difference": 2.9952,
+      "score_disagreements": 189,
+      "mean_score_difference": 1.465,
+      "combined_mean_log10_guesses": 3.8848,
+      "combined_median_log10_guesses": 4.113,
+      "mean_information_added": 0.0,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_word",
+        "samples": 200,
+        "mean_log10_guesses": 4.3535,
+        "median_log10_guesses": 4.0,
+        "mean_score": 1.085,
+        "median_score": 1.0,
+        "match_rate": 0.435,
+        "ranked_match_rate": 0.385,
+        "score_distribution": {
+          "0": 13,
+          "1": 160,
+          "2": 24,
+          "3": 3
+        }
+      },
+      "baseline": {
+        "category": "indic_word",
+        "samples": 200,
+        "mean_log10_guesses": 4.2398,
+        "median_log10_guesses": 4.0065,
+        "mean_score": 0.955,
+        "median_score": 1.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "0": 23,
+          "1": 168,
+          "2": 4,
+          "3": 5
+        }
+      },
+      "indicpass_lower": 60,
+      "indicpass_higher": 75,
+      "equal": 65,
+      "mean_log10_difference": 0.1138,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 62,
+      "mean_score_difference": 0.13,
+      "combined_mean_log10_guesses": 3.8735,
+      "combined_median_log10_guesses": 4.0,
+      "mean_information_added": -0.3662,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_numeric",
+        "samples": 200,
+        "mean_log10_guesses": 7.8743,
+        "median_log10_guesses": 8.0,
+        "mean_score": 2.55,
+        "median_score": 3.0,
+        "match_rate": 0.455,
+        "ranked_match_rate": 0.42,
+        "score_distribution": {
+          "1": 10,
+          "2": 89,
+          "3": 82,
+          "4": 19
+        }
+      },
+      "baseline": {
+        "category": "indic_numeric",
+        "samples": 200,
+        "mean_log10_guesses": 7.0941,
+        "median_log10_guesses": 7.0,
+        "mean_score": 2.04,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 40,
+          "2": 120,
+          "3": 32,
+          "4": 8
+        }
+      },
+      "indicpass_lower": 39,
+      "indicpass_higher": 129,
+      "equal": 32,
+      "mean_log10_difference": 0.7802,
+      "median_log10_difference": 0.6238,
+      "score_disagreements": 125,
+      "mean_score_difference": 0.51,
+      "combined_mean_log10_guesses": 6.8394,
+      "combined_median_log10_guesses": 6.7601,
+      "mean_information_added": -0.2548,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_year",
+        "samples": 200,
+        "mean_log10_guesses": 6.8472,
+        "median_log10_guesses": 6.4362,
+        "mean_score": 1.96,
+        "median_score": 2.0,
+        "match_rate": 0.475,
+        "ranked_match_rate": 0.44,
+        "score_distribution": {
+          "1": 51,
+          "2": 112,
+          "3": 31,
+          "4": 6
+        }
+      },
+      "baseline": {
+        "category": "indic_year",
+        "samples": 200,
+        "mean_log10_guesses": 6.5188,
+        "median_log10_guesses": 6.1139,
+        "mean_score": 1.925,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 49,
+          "2": 125,
+          "3": 18,
+          "4": 8
+        }
+      },
+      "indicpass_lower": 53,
+      "indicpass_higher": 143,
+      "equal": 4,
+      "mean_log10_difference": 0.3284,
+      "median_log10_difference": 0.4318,
+      "score_disagreements": 89,
+      "mean_score_difference": 0.035,
+      "combined_mean_log10_guesses": 6.1888,
+      "combined_median_log10_guesses": 6.0043,
+      "mean_information_added": -0.33,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_symbol",
+        "samples": 200,
+        "mean_log10_guesses": 6.9801,
+        "median_log10_guesses": 7.0,
+        "mean_score": 2.115,
+        "median_score": 2.0,
+        "match_rate": 0.455,
+        "ranked_match_rate": 0.415,
+        "score_distribution": {
+          "1": 62,
+          "2": 67,
+          "3": 57,
+          "4": 14
+        }
+      },
+      "baseline": {
+        "category": "indic_symbol",
+        "samples": 200,
+        "mean_log10_guesses": 6.9805,
+        "median_log10_guesses": 7.0,
+        "mean_score": 1.915,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 83,
+          "2": 61,
+          "3": 46,
+          "4": 10
+        }
+      },
+      "indicpass_lower": 63,
+      "indicpass_higher": 83,
+      "equal": 54,
+      "mean_log10_difference": -0.0005,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 101,
+      "mean_score_difference": 0.2,
+      "combined_mean_log10_guesses": 6.505,
+      "combined_median_log10_guesses": 6.6075,
+      "mean_information_added": -0.4756,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "indicpass": {
+        "category": "mixed",
+        "samples": 200,
+        "mean_log10_guesses": 11.9235,
+        "median_log10_guesses": 12.1649,
+        "mean_score": 3.71,
+        "median_score": 4.0,
+        "match_rate": 0.775,
+        "ranked_match_rate": 0.675,
+        "score_distribution": {
+          "2": 10,
+          "3": 38,
+          "4": 152
+        }
+      },
+      "baseline": {
+        "category": "mixed",
+        "samples": 200,
+        "mean_log10_guesses": 10.1444,
+        "median_log10_guesses": 10.116,
+        "mean_score": 3.33,
+        "median_score": 4.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 5,
+          "2": 33,
+          "3": 53,
+          "4": 109
+        }
+      },
+      "indicpass_lower": 34,
+      "indicpass_higher": 162,
+      "equal": 4,
+      "mean_log10_difference": 1.7791,
+      "median_log10_difference": 1.9478,
+      "score_disagreements": 90,
+      "mean_score_difference": 0.38,
+      "combined_mean_log10_guesses": 9.8748,
+      "combined_median_log10_guesses": 9.9716,
+      "mean_information_added": -0.2696,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "indicpass": {
+        "category": "random",
+        "samples": 200,
+        "mean_log10_guesses": 11.0115,
+        "median_log10_guesses": 11.0,
+        "mean_score": 3.74,
+        "median_score": 4.0,
+        "match_rate": 0.01,
+        "ranked_match_rate": 0.01,
+        "score_distribution": {
+          "3": 52,
+          "4": 148
+        }
+      },
+      "baseline": {
+        "category": "random",
+        "samples": 200,
+        "mean_log10_guesses": 10.9658,
+        "median_log10_guesses": 11.0,
+        "mean_score": 3.42,
+        "median_score": 4.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "2": 24,
+          "3": 68,
+          "4": 108
+        }
+      },
+      "indicpass_lower": 2,
+      "indicpass_higher": 18,
+      "equal": 180,
+      "mean_log10_difference": 0.0457,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 64,
+      "mean_score_difference": 0.32,
+      "combined_mean_log10_guesses": 10.9624,
+      "combined_median_log10_guesses": 11.0,
+      "mean_information_added": -0.0035,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    }
+  ],
+  "comparison_without_mined": [
+    {
+      "category": "english",
+      "samples": 200,
+      "indicpass": {
+        "category": "english",
+        "samples": 200,
+        "mean_log10_guesses": 7.0908,
+        "median_log10_guesses": 7.4097,
+        "mean_score": 2.215,
+        "median_score": 2.0,
+        "match_rate": 0.595,
+        "ranked_match_rate": 0.375,
+        "score_distribution": {
+          "1": 54,
+          "2": 71,
+          "3": 53,
+          "4": 22
+        }
+      },
+      "baseline": {
+        "category": "english",
+        "samples": 200,
+        "mean_log10_guesses": 3.8848,
+        "median_log10_guesses": 4.113,
+        "mean_score": 0.745,
+        "median_score": 1.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "0": 81,
+          "1": 89,
+          "2": 30
+        }
+      },
+      "indicpass_lower": 0,
+      "indicpass_higher": 200,
+      "equal": 0,
+      "mean_log10_difference": 3.206,
+      "median_log10_difference": 2.9924,
+      "score_disagreements": 190,
+      "mean_score_difference": 1.47,
+      "combined_mean_log10_guesses": 3.8848,
+      "combined_median_log10_guesses": 4.113,
+      "mean_information_added": 0.0,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_word",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_word",
+        "samples": 200,
+        "mean_log10_guesses": 4.3581,
+        "median_log10_guesses": 4.0,
+        "mean_score": 1.085,
+        "median_score": 1.0,
+        "match_rate": 0.42,
+        "ranked_match_rate": 0.385,
+        "score_distribution": {
+          "0": 14,
+          "1": 160,
+          "2": 21,
+          "3": 5
+        }
+      },
+      "baseline": {
+        "category": "indic_word",
+        "samples": 200,
+        "mean_log10_guesses": 4.2398,
+        "median_log10_guesses": 4.0065,
+        "mean_score": 0.955,
+        "median_score": 1.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "0": 23,
+          "1": 168,
+          "2": 4,
+          "3": 5
+        }
+      },
+      "indicpass_lower": 59,
+      "indicpass_higher": 74,
+      "equal": 67,
+      "mean_log10_difference": 0.1183,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 63,
+      "mean_score_difference": 0.13,
+      "combined_mean_log10_guesses": 3.8775,
+      "combined_median_log10_guesses": 4.0,
+      "mean_information_added": -0.3622,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_numeric",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_numeric",
+        "samples": 200,
+        "mean_log10_guesses": 7.9042,
+        "median_log10_guesses": 8.0,
+        "mean_score": 2.575,
+        "median_score": 3.0,
+        "match_rate": 0.44,
+        "ranked_match_rate": 0.41,
+        "score_distribution": {
+          "1": 7,
+          "2": 90,
+          "3": 84,
+          "4": 19
+        }
+      },
+      "baseline": {
+        "category": "indic_numeric",
+        "samples": 200,
+        "mean_log10_guesses": 7.0941,
+        "median_log10_guesses": 7.0,
+        "mean_score": 2.04,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 40,
+          "2": 120,
+          "3": 32,
+          "4": 8
+        }
+      },
+      "indicpass_lower": 35,
+      "indicpass_higher": 131,
+      "equal": 34,
+      "mean_log10_difference": 0.81,
+      "median_log10_difference": 0.6789,
+      "score_disagreements": 122,
+      "mean_score_difference": 0.535,
+      "combined_mean_log10_guesses": 6.8651,
+      "combined_median_log10_guesses": 6.7872,
+      "mean_information_added": -0.229,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_year",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_year",
+        "samples": 200,
+        "mean_log10_guesses": 6.8907,
+        "median_log10_guesses": 6.4362,
+        "mean_score": 1.98,
+        "median_score": 2.0,
+        "match_rate": 0.425,
+        "ranked_match_rate": 0.405,
+        "score_distribution": {
+          "1": 47,
+          "2": 116,
+          "3": 31,
+          "4": 6
+        }
+      },
+      "baseline": {
+        "category": "indic_year",
+        "samples": 200,
+        "mean_log10_guesses": 6.5188,
+        "median_log10_guesses": 6.1139,
+        "mean_score": 1.925,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 49,
+          "2": 125,
+          "3": 18,
+          "4": 8
+        }
+      },
+      "indicpass_lower": 49,
+      "indicpass_higher": 146,
+      "equal": 5,
+      "mean_log10_difference": 0.3719,
+      "median_log10_difference": 0.4318,
+      "score_disagreements": 86,
+      "mean_score_difference": 0.055,
+      "combined_mean_log10_guesses": 6.2248,
+      "combined_median_log10_guesses": 6.0043,
+      "mean_information_added": -0.294,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "indic_symbol",
+      "samples": 200,
+      "indicpass": {
+        "category": "indic_symbol",
+        "samples": 200,
+        "mean_log10_guesses": 7.0151,
+        "median_log10_guesses": 7.0,
+        "mean_score": 2.14,
+        "median_score": 2.0,
+        "match_rate": 0.42,
+        "ranked_match_rate": 0.395,
+        "score_distribution": {
+          "1": 59,
+          "2": 68,
+          "3": 59,
+          "4": 14
+        }
+      },
+      "baseline": {
+        "category": "indic_symbol",
+        "samples": 200,
+        "mean_log10_guesses": 6.9805,
+        "median_log10_guesses": 7.0,
+        "mean_score": 1.915,
+        "median_score": 2.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 83,
+          "2": 61,
+          "3": 46,
+          "4": 10
+        }
+      },
+      "indicpass_lower": 58,
+      "indicpass_higher": 83,
+      "equal": 59,
+      "mean_log10_difference": 0.0345,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 104,
+      "mean_score_difference": 0.225,
+      "combined_mean_log10_guesses": 6.5396,
+      "combined_median_log10_guesses": 6.6196,
+      "mean_information_added": -0.4409,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "mixed",
+      "samples": 200,
+      "indicpass": {
+        "category": "mixed",
+        "samples": 200,
+        "mean_log10_guesses": 11.9624,
+        "median_log10_guesses": 12.1739,
+        "mean_score": 3.71,
+        "median_score": 4.0,
+        "match_rate": 0.74,
+        "ranked_match_rate": 0.655,
+        "score_distribution": {
+          "2": 9,
+          "3": 40,
+          "4": 151
+        }
+      },
+      "baseline": {
+        "category": "mixed",
+        "samples": 200,
+        "mean_log10_guesses": 10.1444,
+        "median_log10_guesses": 10.116,
+        "mean_score": 3.33,
+        "median_score": 4.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "1": 5,
+          "2": 33,
+          "3": 53,
+          "4": 109
+        }
+      },
+      "indicpass_lower": 31,
+      "indicpass_higher": 165,
+      "equal": 4,
+      "mean_log10_difference": 1.818,
+      "median_log10_difference": 1.9525,
+      "score_disagreements": 88,
+      "mean_score_difference": 0.38,
+      "combined_mean_log10_guesses": 9.8939,
+      "combined_median_log10_guesses": 9.9716,
+      "mean_information_added": -0.2505,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    },
+    {
+      "category": "random",
+      "samples": 200,
+      "indicpass": {
+        "category": "random",
+        "samples": 200,
+        "mean_log10_guesses": 11.0109,
+        "median_log10_guesses": 11.0,
+        "mean_score": 3.74,
+        "median_score": 4.0,
+        "match_rate": 0.01,
+        "ranked_match_rate": 0.01,
+        "score_distribution": {
+          "3": 52,
+          "4": 148
+        }
+      },
+      "baseline": {
+        "category": "random",
+        "samples": 200,
+        "mean_log10_guesses": 10.9658,
+        "median_log10_guesses": 11.0,
+        "mean_score": 3.42,
+        "median_score": 4.0,
+        "match_rate": 0.0,
+        "ranked_match_rate": 0.0,
+        "score_distribution": {
+          "2": 24,
+          "3": 68,
+          "4": 108
+        }
+      },
+      "indicpass_lower": 2,
+      "indicpass_higher": 18,
+      "equal": 180,
+      "mean_log10_difference": 0.045,
+      "median_log10_difference": 0.0,
+      "score_disagreements": 64,
+      "mean_score_difference": 0.32,
+      "combined_mean_log10_guesses": 10.9617,
+      "combined_median_log10_guesses": 11.0,
+      "mean_information_added": -0.0041,
+      "median_information_added": 0.0,
+      "direction_note": "Negative means IndicPass estimates FEWER guesses than the baseline. Lower is not automatically more accurate: that requires a reference attack model, which this project does not have.",
+      "combined_note": "combined = min(IndicPass, baseline) per password. Guessing cost is a minimum over the attacker's options, so an attacker holding both wordlists pays the smaller. mean_information_added is combined minus baseline: what the Indic lexicon finds that the baseline did not."
+    }
+  ]
+}
