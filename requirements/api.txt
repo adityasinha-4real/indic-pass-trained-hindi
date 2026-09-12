@@ -1,0 +1,16 @@
+# IndicPass -- API adapter dependencies (api/main.py).
+#
+#   python -m pip install -r requirements/api.txt
+#
+# Installs everything in base.txt as well -- the adapter imports
+# indicpass.password directly and needs the same runtime the CLIs use
+# (zxcvbn, wordfreq, PyYAML). It adds nothing to src/indicpass/ itself: this
+# file exists so the web layer's dependencies stay out of the research
+# package's own requirement files.
+-r base.txt
+
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+
+# Needed for fastapi.testclient.TestClient, used by api/tests/test_api.py.
+httpx>=0.27.0

@@ -67,7 +67,7 @@ Full synthesis: `results/reports/final_report.md`. Reproduction:
 | Password engine: leet/separator mangling | not started |
 | Validation against a **real** cracking run on leaked data | not started — still the blocker on any real-world accuracy claim |
 | Tamil / Telugu / Kannada / Malayalam | not started |
-| Backend / frontend | not started |
+| Backend / frontend | done — thin FastAPI adapter + Next.js UI over the existing engine; see `docs/frontend.md` |
 
 Processed Hindi splits:
 
@@ -99,6 +99,10 @@ machine.
 
 ```
 IndicPass/
+├── api/                     # thin FastAPI adapter over the engine below
+│   ├── main.py              #   POST /api/analyze, GET /api/health
+│   └── tests/               #   API-level tests; run separately (see docs/frontend.md)
+├── frontend/                # Next.js + TypeScript + Tailwind UI, calls api/
 ├── config/                  # all tunable settings; relative paths only
 │   ├── project.yaml         #   paths, seed, logging
 │   ├── languages.yaml       #   target languages, scripts, Unicode ranges
@@ -130,7 +134,8 @@ IndicPass/
 ├── requirements/
 │   ├── base.txt             # dataset pipeline + password engine (zxcvbn, wordfreq)
 │   ├── dev.txt              # + tests, linting, notebooks
-│   └── ml.txt               # + torch/transformers — training PC only
+│   ├── ml.txt               # + torch/transformers — training PC only
+│   └── api.txt              # + FastAPI/uvicorn — running api/ only
 ├── results/
 │   ├── figures/             # SVG figures for the final report
 │   ├── logs/                # rotated run logs (git-ignored)
@@ -249,13 +254,14 @@ source .venv/bin/activate
 
 ### 3. Install dependencies
 
-There are three requirement files; install what you need.
+There are four requirement files; install what you need.
 
 | File | Contents | Install it when |
 | --- | --- | --- |
 | `requirements/base.txt` | dataset pipeline only | always |
 | `requirements/dev.txt` | + pytest, ruff, mypy, notebooks | you are running tests |
 | `requirements/ml.txt` | + torch, tensorboard | you are training or running inference |
+| `requirements/api.txt` | + FastAPI, uvicorn | you are running `api/` (see `docs/frontend.md`) |
 
 ```bash
 python -m pip install --upgrade pip
@@ -660,6 +666,25 @@ and key it came from — nothing is recomputed there.
 
 `docs/REPRODUCING.md` has the environment, the seeds, the artefact hashes, the
 expected test count and the expected report digests.
+
+---
+
+## Frontend & API
+
+A thin FastAPI adapter (`api/`) and a Next.js interface (`frontend/`) over
+the password-strength engine above. No analysis logic lives in either — every
+number the page shows comes from the same `IndicPassMeter` object
+`scripts/check_password.py` has always used.
+
+```bash
+python -m pip install -r requirements/api.txt
+python -m uvicorn api.main:app --reload --port 8000    # terminal 1
+
+cd frontend && npm install && npm run dev               # terminal 2, http://localhost:3000
+```
+
+Full architecture, the API contract, security notes and test instructions:
+[docs/frontend.md](docs/frontend.md).
 
 ---
 
