@@ -68,6 +68,7 @@ Full synthesis: `results/reports/final_report.md`. Reproduction:
 | Validation against a **real** cracking run on leaked data | not started — still the blocker on any real-world accuracy claim |
 | Tamil / Telugu / Kannada / Malayalam | not started |
 | Backend / frontend | done — thin FastAPI adapter + Next.js UI over the existing engine; see `docs/frontend.md` |
+| Rigorous evaluation layer (classification, ROC/PR-AUC, calibration, attack-budget success, category/baseline comparison) | done — a measurement adapter over M2-M5's own output, adds no scoring logic; see `docs/evaluation.md` |
 
 Processed Hindi splits:
 
@@ -166,7 +167,10 @@ IndicPass/
 │   ├── final_report.py      # assembles final_report.{md,json} + figures
 │   ├── train_pcfg.py        # offline: dictionary -> grammar + guess curve
 │   ├── pcfg_benchmark.py    # PCFG vs zxcvbn, targeted cases, random control
-│   └── reference_attack.py  # all three estimators vs an observed cracking order
+│   ├── reference_attack.py  # all three estimators vs an observed cracking order
+│   ├── milestone5_oov_attack.py # all three estimators vs the out-of-lexicon attack
+│   └── evaluate_model.py    # classification/ROC-PR/calibration/attack-budget layer
+│                            #   over M2-M5's output -> results/evaluation/
 ├── src/indicpass/           # the importable package
 │   ├── config.py            # YAML loading, path resolution, languages
 │   ├── records.py           # the standard record schema + JSONL I/O
@@ -206,7 +210,12 @@ IndicPass/
 │           ├── estimator.py #     probability -> guess number (Monte Carlo)
 │           ├── artifact.py  #     the committed curve + its fingerprint
 │           └── probe.py     #     targeted cases and the random control
-└── tests/                   # 785 tests
+│   └── evaluation/          # measurement layer over the engine above; see docs/evaluation.md
+│       ├── metrics.py       #   confusion matrix, accuracy/F1/MCC, ROC-AUC, PR-AUC, ECE
+│       ├── budgets.py       #   attack-budget success rates, guess/rank distributions
+│       ├── bootstrap.py     #   paired bootstrap over classification statistics
+│       └── figures.py       #   ROC/PR curves, confusion-matrix grid, histograms
+└── tests/                   # 836 tests
 ```
 
 The password engine never runs the neural model. The transliterator's whole
@@ -685,6 +694,28 @@ cd frontend && npm install && npm run dev               # terminal 2, http://loc
 
 Full architecture, the API contract, security notes and test instructions:
 [docs/frontend.md](docs/frontend.md).
+
+---
+
+## Evaluation
+
+A measurement layer (`src/indicpass/evaluation/`, `scripts/evaluate_model.py`)
+that adds the vocabulary of a classifier evaluation — accuracy, precision,
+recall, F1, ROC-AUC, PR-AUC, confusion matrices, calibration, attack-budget
+success rates, a paired bootstrap and a baseline comparison — on top of what
+Milestones 2-5 already compute, without changing any of it. Ground truth is
+`crackable(B) = covered AND rank <= B`, read from the two existing bounded
+reference attackers (Milestone 4's wordlist, Milestone 5's character model)
+rather than invented.
+
+```bash
+python scripts/evaluate_model.py --languages hin
+```
+
+Writes `results/evaluation/{metrics.json, metrics.csv, predictions.jsonl,
+category_metrics.csv, attack_budget.csv, evaluation_report.md, figures/*.svg}`.
+Full design, the evaluation contract, and why each metric is or is not
+computed on this project's outputs: [docs/evaluation.md](docs/evaluation.md).
 
 ---
 

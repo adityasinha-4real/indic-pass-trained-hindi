@@ -1,0 +1,195 @@
+================================================================================
+IndicPass -- Project Running Commands
+================================================================================
+Run everything from the project root:
+  E:\Sem 7 Project 1\indic-pass-hinglish\indic-pass
+
+IMPORTANT (this machine): use the project's own virtual environment, not the
+bare "python" on PATH -- that resolves to a torch-less system Python 3.14
+that looks identical but is missing every dependency.
+
+  Windows (PowerShell / this project's convention):
+    .\.venv\Scripts\python.exe  <script> ...
+    .\.venv\Scripts\python.exe -m <module> ...
+
+  If .venv doesn't exist yet, create it first (see SETUP below).
+  Everywhere "python" appears below, read it as ".\.venv\Scripts\python.exe"
+  on this machine (or "python" / "python3" inside an activated venv on
+  Linux/macOS).
+
+================================================================================
+0. SETUP (one-time, new machine)
+================================================================================
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1                      # PowerShell
+# source .venv/bin/activate                        # Linux / macOS
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements/dev.txt      # base + tests + lint
+python -m pip install -r requirements/ml.txt       # + torch (training/inference)
+python -m pip install -r requirements/api.txt      # + FastAPI/uvicorn (backend)
+
+python -m pip install -e .                         # optional: `import indicpass` anywhere
+
+Verify install:
+python -m pytest
+
+================================================================================
+1. DATASET PIPELINE
+================================================================================
+python scripts/inspect_dataset.py --remote                       # plan, no download
+python scripts/download_datasets.py --plan-only                  # see what would be fetched
+python scripts/download_datasets.py --languages hin               # actually download
+python scripts/inspect_dataset.py --local --samples 5             # inspect what landed
+
+python scripts/preprocess_dataset.py --languages hin --dry-run    # optional preview
+python scripts/preprocess_dataset.py --languages hin              # raw -> standardized JSONL
+
+python scripts/validate_dataset.py --languages hin                # quality gate, writes report
+
+================================================================================
+2. MODEL TRAINING / INFERENCE (transliteration model)
+================================================================================
+# Debug run FIRST -- 500 records, must drive val CER to ~0.0000 (~5 min CPU)
+python scripts/train.py --config config/training/hindi_debug.yaml
+
+# Full training, staged
+python scripts/train.py --config config/training/hindi_baseline.yaml \
+    --max-train-records 10000 --name hindi_10k --epochs 5          # Stage 2
+
+python scripts/train.py --config config/training/hindi_baseline.yaml \
+    --max-train-records 100000 --name hindi_100k --epochs 8        # Stage 3
+
+python scripts/train.py --config config/training/hindi_baseline.yaml  # Stage 4, full run
+
+# Resume an interrupted run
+python scripts/train.py --config config/training/hindi_baseline.yaml --resume
+
+# Override batch size without editing the config (GPU OOM fix)
+python scripts/train.py --config config/training/hindi_baseline.yaml --batch-size 64
+
+# Inference from a checkpoint
+python scripts/predict.py --checkpoint runs/hindi_baseline_v1/checkpoints/best.pt --text "namaste"
+
+# Score the held-out test split -> results/reports/test_eval_hin_v1.{json,md}
+python scripts/evaluate.py --languages hin
+
+# Export a checkpoint to a portable safetensors bundle (models/final/)
+python scripts/export_bundle.py --checkpoint runs/hindi_baseline_v1/checkpoints/best.pt
+
+GPU check:
+nvidia-smi
+python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
+
+================================================================================
+3. PASSWORD-STRENGTH ENGINE
+================================================================================
+# Once: build the frequency-ranked dictionary offline from the trained model (~35 min CPU)
+python scripts/build_indicdict.py --languages hin
+
+# Score one password (no model involved -- dictionary lookup only)
+python scripts/check_password.py --password "bharat2024"
+python scripts/check_password.py --password "bharat2024" --json
+python scripts/check_password.py                          # prompts without echo (safer)
+
+# Dictionary coverage + IndicPass vs zxcvbn benchmark
+python scripts/indicdict_coverage.py --languages hin
+python scripts/password_benchmark.py --languages hin
+
+# Milestone 3: PCFG (no torch, no network -- refits from committed dictionary, ~20s)
+python scripts/train_pcfg.py --languages hin
+python scripts/pcfg_benchmark.py --languages hin
+
+# Milestone 4: reference (wordlist) attack -- all 3 estimators vs observed cracking order
+python scripts/reference_attack.py --languages hin
+
+# Milestone 5: out-of-lexicon character-model attack
+python scripts/milestone5_oov_attack.py --languages hin
+
+# Every pipeline run twice, in separate processes, byte-compared
+python scripts/verify_reproducibility.py --languages hin
+
+# Assemble the final synthesis report + figures from the reports above
+python scripts/final_report.py
+
+================================================================================
+4. RIGOROUS EVALUATION LAYER (classification / ROC-PR / calibration / attack-budget)
+================================================================================
+python scripts/evaluate_model.py --languages hin
+
+Writes results/evaluation/{metrics.json, metrics.csv, category_metrics.csv,
+attack_budget.csv, predictions.jsonl, evaluation_report.md, figures/*.svg}.
+Design + rationale: docs/evaluation.md
+
+================================================================================
+5. BACKEND -- FastAPI (api/)
+================================================================================
+python -m pip install -r requirements/api.txt      # once
+
+python -m uvicorn api.main:app --reload --port 8000
+# -> http://localhost:8000            (POST /api/analyze, GET /api/health)
+# -> http://localhost:8000/docs       (Swagger UI)
+
+First request after startup builds the dictionary + refits the PCFG grammar
+(tens of seconds); this happens once per process, not per request.
+
+Health check:
+curl http://localhost:8000/api/health
+
+API tests (kept out of the default `pytest` run -- slow, builds the meter twice):
+python -m pytest api/tests
+
+================================================================================
+6. FRONTEND -- Next.js (frontend/)
+================================================================================
+cd frontend
+npm install                 # once
+npm run dev                 # dev server -> http://localhost:3000
+npm run build                # production build
+npm run start                # serve the production build
+npm run lint                  # eslint
+
+Environment (optional -- defaults to http://localhost:8000 if unset):
+Copy-Item .env.local.example .env.local     # Windows
+# cp .env.local.example .env.local          # Linux / macOS
+# then edit NEXT_PUBLIC_API_BASE_URL if the API runs elsewhere
+
+NOTE: the frontend calls the API above -- start uvicorn (section 5) FIRST,
+then the frontend, or the page will show connection errors.
+
+================================================================================
+7. RUN BOTH SERVERS TOGETHER (2 terminals, from project root)
+================================================================================
+# Terminal 1 -- backend
+.\.venv\Scripts\python.exe -m uvicorn api.main:app --reload --port 8000
+
+# Terminal 2 -- frontend
+cd frontend
+npm run dev
+
+Then open http://localhost:3000
+
+================================================================================
+8. TESTS / LINT / TYPE-CHECK
+================================================================================
+python -m pytest                       # full suite (tests/), excludes api/tests
+python -m pytest api/tests             # API-level tests, run separately (slow)
+python -m pytest tests/test_evaluate_model.py -v   # one file, verbose
+
+ruff check .                           # lint (src, scripts, tests)
+ruff check --output-format concise .   # compact output
+
+mypy src scripts                       # type-check (has pre-existing, unrelated
+                                        # numpy-stub failures in this environment)
+
+================================================================================
+NOTES
+================================================================================
+- Everything under scripts/ is run from the project root, e.g. `python
+  scripts/check_password.py`, never `cd scripts && python check_password.py`.
+- The password-strength engine, its PCFG, its two reference attacks, and the
+  evaluation layer are all frozen research code -- these commands *measure*,
+  never *tune* anything (see docs/evaluation.md and docs/password_strength_design.md).
+- Full setup narrative with expected outputs/counts: README.md and
+  docs/REPRODUCING.md.
+- Frontend/API architecture and contract: docs/frontend.md.

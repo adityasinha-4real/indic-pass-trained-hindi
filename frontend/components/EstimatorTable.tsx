@@ -77,6 +77,13 @@ export function EstimatorTable({ result }: { result: AnalyzeResponse }) {
         </table>
       </div>
 
+      {baseline && baseline.feedback.length > 0 && (
+        <p className="mt-2 text-xs text-muted">
+          <span className="font-medium text-foreground">{result.estimators.baseline} feedback:</span>{" "}
+          {baseline.feedback.join(" ")}
+        </p>
+      )}
+
       {result.combined_log10_guesses !== undefined && (
         <p className="mt-3 text-sm text-muted">
           <span className="font-medium text-foreground">

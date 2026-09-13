@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="460" viewBox="0 0 640 460" role="img" aria-label="Calibration -- mean predicted vs. mean observed log10 (M4)">
+<rect width="640" height="460" fill="#ffffff"/>
+<text x="16" y="26" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#111111">Calibration -- mean predicted vs. mean observed log10 (M4)</text>
+<line x1="56.0" y1="46" x2="56.0" y2="404" stroke="#eeeeee" stroke-width="1"/>
+<text x="56.0" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="middle">0</text>
+<line x1="244.0" y1="46" x2="244.0" y2="404" stroke="#eeeeee" stroke-width="1"/>
+<text x="244.0" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="middle">5</text>
+<line x1="432.0" y1="46" x2="432.0" y2="404" stroke="#eeeeee" stroke-width="1"/>
+<text x="432.0" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="middle">10</text>
+<line x1="620.0" y1="46" x2="620.0" y2="404" stroke="#eeeeee" stroke-width="1"/>
+<text x="620.0" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="middle">15</text>
+<line x1="56" y1="404.0" x2="620" y2="404.0" stroke="#eeeeee" stroke-width="1"/>
+<text x="48" y="407.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="end">0</text>
+<line x1="56" y1="284.7" x2="620" y2="284.7" stroke="#eeeeee" stroke-width="1"/>
+<text x="48" y="287.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="end">5</text>
+<line x1="56" y1="165.3" x2="620" y2="165.3" stroke="#eeeeee" stroke-width="1"/>
+<text x="48" y="168.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="end">10</text>
+<line x1="56" y1="46.0" x2="620" y2="46.0" stroke="#eeeeee" stroke-width="1"/>
+<text x="48" y="49.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#666666" text-anchor="end">15</text>
+<rect x="56" y="46" width="564" height="358" fill="none" stroke="#999999" stroke-width="1"/>
+<line x1="56.0" y1="404.0" x2="620.0" y2="46.0" stroke="#999999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<path d="M181.3,303.9 L220.7,266.9 L252.8,233.7 L282.7,208.4 L311.0,178.2 L340.3,185.5 L365.8,152.9 L456.7,83.7" fill="none" stroke="#1f4e79" stroke-width="2"/>
+<path d="M218.7,298.8 L271.8,252.4 L310.2,218.5 L338.8,223.2 L368.4,191.3 L399.4,166.7 L432.6,154.6 L545.0,107.8" fill="none" stroke="#c55a11" stroke-width="2"/>
+<path d="M131.7,266.0 L202.5,262.9 L241.5,211.9 L269.0,196.8 L285.5,187.8 L314.0,189.4 L362.9,164.6 L464.2,133.8" fill="none" stroke="#7f7f7f" stroke-width="2"/>
+<text x="338.0" y="452" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle">mean predicted log10 guesses</text>
+<text x="14" y="225.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#666666" text-anchor="middle" transform="rotate(-90 14 225.0)">mean observed log10 rank</text>
+<line x1="56" y1="38" x2="72" y2="38" stroke="#1f4e79" stroke-width="2"/>
+<text x="76" y="41" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#333333">IndicPass (M2)</text>
+<line x1="168.8" y1="38" x2="184.8" y2="38" stroke="#c55a11" stroke-width="2"/>
+<text x="188.8" y="41" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#333333">PCFG (M3)</text>
+<line x1="250.60000000000002" y1="38" x2="266.6" y2="38" stroke="#7f7f7f" stroke-width="2"/>
+<text x="270.6" y="41" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#333333">zxcvbn 4.5.0</text>
+</svg>

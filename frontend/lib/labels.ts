@@ -24,6 +24,24 @@ export const PCFG_CATEGORY_LABELS: Record<string, string> = {
   symbols: "Symbol run",
 };
 
+/** Per-pattern colors for the password segmentation strip. Presentation
+ * only — an arbitrary, fixed palette distinct from STRENGTH_COLORS so a
+ * viewer never confuses "what kind of span is this" with "how strong is
+ * this password".
+ */
+export const PATTERN_COLORS: Record<string, string> = {
+  indic_word: "#1e3a5f",
+  digits: "#0d9488",
+  year: "#7c3aed",
+  symbols: "#b45309",
+  repeat: "#be123c",
+  bruteforce: "#6b7280",
+};
+
+export function patternColor(pattern: string): string {
+  return PATTERN_COLORS[pattern] ?? PATTERN_COLORS.bruteforce;
+}
+
 export const STRENGTH_COLORS: readonly string[] = [
   "#dc2626", // 0 Very Weak
   "#ea580c", // 1 Weak

@@ -6,6 +6,8 @@ import { MatchList } from "./MatchList";
 import { PcfgPanel } from "./PcfgPanel";
 import { DictionaryPanel } from "./DictionaryPanel";
 import { Section } from "./Section";
+import { LiveEstimatorComparison } from "./research/LiveEstimatorComparison";
+import { SegmentationStrip } from "./research/SegmentationStrip";
 
 export function ResultPanel({ result }: { result: AnalyzeResponse }) {
   return (
@@ -20,17 +22,23 @@ export function ResultPanel({ result }: { result: AnalyzeResponse }) {
       </Section>
 
       <Section
-        title="Attack analysis"
-        description="Every estimator this run has configured, scored on this password in one call."
+        title="Live Estimator Comparison"
+        description="Every estimator this run has configured, scored on this exact password in one call — a live comparison between models, not a validation against ground truth (see Independent Validation further down)."
       >
-        <EstimatorTable result={result} />
+        <LiveEstimatorComparison result={result} />
+        <div className="mt-5">
+          <EstimatorTable result={result} />
+        </div>
       </Section>
 
       <Section
         title="Structural findings"
         description="What the winning segmentation found in this password."
       >
-        <MatchList matches={result.matched_patterns} />
+        <SegmentationStrip matches={result.matched_patterns} passwordLength={result.password_length} />
+        <div className="mt-4">
+          <MatchList matches={result.matched_patterns} />
+        </div>
       </Section>
 
       {result.warnings.length > 0 && (

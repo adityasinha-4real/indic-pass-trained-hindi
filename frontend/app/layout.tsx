@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">
         <header className="border-b bg-surface">
-          <div className="mx-auto flex w-full max-w-3xl items-baseline gap-3 px-4 py-5 sm:px-6">
+          <div className="mx-auto flex w-full max-w-4xl items-baseline gap-3 px-4 py-5 sm:px-6">
             <h1 className="text-xl font-semibold tracking-tight">IndicPass</h1>
             <p className="text-sm text-muted">Indic-Aware Password Strength Estimator</p>
           </div>
